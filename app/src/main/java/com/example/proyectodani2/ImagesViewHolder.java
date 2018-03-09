@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 public class ImagesViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivContent;
-
+//Prueba
 
     public ImagesViewHolder(View itemView) {
         super(itemView);
