@@ -10,8 +10,7 @@ import android.widget.ImageView;
 
 public class ImagesViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivContent;
-//Prueba
-//lala
+
     public ImagesViewHolder(View itemView) {
         super(itemView);
         ivContent = itemView.findViewById(R.id.imageMonsterPics);

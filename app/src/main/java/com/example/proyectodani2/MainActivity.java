@@ -40,12 +40,14 @@ public class MainActivity extends AppCompatActivity
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_monsters) {
             fragmentClass = MonsterListPagerFragment.class;
+
         } else if (id == R.id.nav_weapons) {
             Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_games) {
