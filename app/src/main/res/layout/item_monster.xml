@@ -9,9 +9,11 @@
         android:layout_height="80dp"
         android:cropToPadding="true"
         android:scaleType="centerCrop" />
+
     <TextView
         android:id="@+id/monster_name"
+        style="@style/AudioFileInfoOverlayText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:hint="LOADING..." />
 </android.support.constraint.ConstraintLayout>
