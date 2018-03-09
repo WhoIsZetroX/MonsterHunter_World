@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.proyectodani2.MonsterPicsFragment">
+
+     <android.support.v7.widget.RecyclerView
+         android:id="@+id/recyclerview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />
+
+     <!--    <ScrollView
+
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+
+             <LinearLayout
+                 android:id="@+id/linearLayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical">
+                    &lt;!&ndash; <android.support.v7.widget.RecyclerView
+                         android:id="@+id/recyclerview"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent">&ndash;&gt;
+
+                             <ImageView
+                                 android:id="@+id/imageiv"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content" />
+
+             &lt;!&ndash;
+                     </android.support.v7.widget.RecyclerView>
+             &ndash;&gt;
+             </LinearLayout>
+         </ScrollView>-->
+</FrameLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/firstSection"
+        android:title="Titulo principal"
+        />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_monsters"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Monsters" />
+        <item
+            android:id="@+id/nav_weapons"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Weapons" />
+        <item
+            android:id="@+id/nav_games"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Games" />
+        <item
+            android:id="@+id/nav_music"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Music" />
+    </group>
+
+    <item
+        android:id="@+id/secondSection"
+        android:title="Titulo secundario"
+        />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Help" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/gmagalaicon"
+            android:title="Settings" />
+
+    </group>
+</menu>
