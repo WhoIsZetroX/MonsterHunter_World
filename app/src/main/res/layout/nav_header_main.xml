@@ -17,7 +17,7 @@
         android:layout_width="93dp"
         android:layout_height="89dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/gmagalaicon" />
+        app:srcCompat="@drawable/drawericon" />
 
     <TextView
         android:layout_width="match_parent"

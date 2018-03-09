@@ -7,9 +7,7 @@
         android:id="@+id/firstSection"
         android:title="Titulo principal" />
     <group android:checkableBehavior="single">
-
         <item
-
             android:id="@+id/nav_monsters"
             android:icon="@drawable/monstericon"
             android:title="Monsters" />
