@@ -11,7 +11,7 @@
         <item
 
             android:id="@+id/nav_monsters"
-            android:icon="@drawable/gmagalaicon"
+            android:icon="@drawable/monstericon"
             android:title="Monsters" />
         <item
             android:id="@+id/nav_weapons"
@@ -34,11 +34,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_help"
-            android:icon="@drawable/gmagalaicon"
+            android:icon="@drawable/helpicon"
             android:title="Help" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/gmagalaicon"
+            android:icon="@drawable/settingicon"
             android:title="Settings" />
 
     </group>
