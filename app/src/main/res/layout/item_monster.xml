@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/monster_name"
-        style="@style/AudioFileInfoOverlayText"
+        style="@style/MonsterListStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="LOADING..." />

@@ -17,11 +17,22 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AudioFileInfoOverlayText">
+    <style name="MonsterListStyle">
         <item name="android:paddingLeft">4px</item>
         <item name="android:paddingBottom">4px</item>
         <item name="android:textColor">#ffffffff</item>
         <item name="android:textSize">25sp</item>
+        <item name="android:shadowColor">#000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">15</item>
+    </style>
+
+    <style name="HelpMenuStyle">
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:shadowColor">#000</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
