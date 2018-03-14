@@ -44,7 +44,6 @@ public class MonsterDetailsFragment extends Fragment {
         monsterDesc = view.findViewById(R.id.monsterDesc);
         imageMonster = view.findViewById(R.id.imageMonster);
 
-        //TODO: pillamos la key del listener
         //String monsterKey="-L5PJ79zN1mmghpBW2KV";
         MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
         monsterViewModel.getMonsterKey().observe(this, new Observer<String>() {

@@ -38,6 +38,7 @@ public class MonsterPicsFragment extends Fragment {
     ImageView imageMonster;
     LinearLayout linearLayout;
     RecyclerView recyclerView;
+    MonsterPicsAdapter monsterPicsAdapter;
     //Conectar a la base de datos
     private DatabaseReference mReference = null;
 
@@ -53,6 +54,7 @@ public class MonsterPicsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_monster_pics, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
         monsterViewModel.getMonsterKey().observe(this, new Observer<String>() {
@@ -72,18 +74,20 @@ public class MonsterPicsFragment extends Fragment {
     void loadMonsterPics(final String monsterKey) {
         mReference = FirebaseDatabase.getInstance().getReference();
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<MonsterPic>()
-                .setQuery(mReference.child("monsters/data").child(monsterKey).child("monsterPics"), MonsterPic.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<String>()
+                .setQuery(mReference.child("monsters/data").child(monsterKey).child("monsterPics"), String.class)
                 .setLifecycleOwner(this)
                 .build();
 
-        MonsterPicsAdapter monsterPicsAdapter = new MonsterPicsAdapter(getActivity(), options);
+        System.out.println("MONSTERKEY = " + monsterKey);
+        monsterPicsAdapter = new MonsterPicsAdapter(getActivity(), options);
         recyclerView.setAdapter(monsterPicsAdapter);
 
+        monsterPicsAdapter.startListening();
     }
 
     //Metodo para mostrar los datos del monstruo seleccionado
-   /* void showMonsterKey(final String monsterKey) {
+   /* void loadMonsterPics(final String monsterKey) {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("monsters").child("data").child(monsterKey).addListenerForSingleValueEvent(
