@@ -13,21 +13,21 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
  * Created by dam2a on 06/03/18.
  */
 
-public class MonsterPicsAdapter extends FirebaseRecyclerAdapter<MonsterPic, ImagesViewHolder> {
+public class MonsterPicsAdapter extends FirebaseRecyclerAdapter<String, ImagesViewHolder> {
 
     Context context;
 
-    public MonsterPicsAdapter(Context context, @NonNull FirebaseRecyclerOptions<MonsterPic> options) {
+    public MonsterPicsAdapter(Context context, @NonNull FirebaseRecyclerOptions<String> options) {
         super(options);
         this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ImagesViewHolder holder, int position, @NonNull MonsterPic model) {
+    protected void onBindViewHolder(@NonNull ImagesViewHolder holder, int position, @NonNull String model) {
         Glide.with(context)
-                .load(model.picUrl)
+                .load(model)
                 .into(holder.ivContent);
-        System.out.println(model.picUrl.toString());
+        System.out.println(model+" ---- xd");
     }
 
     @Override
