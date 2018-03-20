@@ -1,22 +1,23 @@
 package com.example.proyectodani2;
 
 
-import android.app.FragmentTransaction;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.RotateAnimation;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,19 +28,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
 
 public abstract class MonsterFragment extends Fragment {
 
-    interface MonsterClickedListener {
-        void onMonsterClicked(Monster monster);
-    }
-
     MonsterClickedListener monsterClickedListener;
     RecyclerView recyclerView;
+    ProgressBar pbar;
     DatabaseReference mReference;
-
     public MonsterFragment() {}
 
     @Override
@@ -54,9 +49,12 @@ public abstract class MonsterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_monster, container, false);
 
         recyclerView = view.findViewById(R.id.recycler);
+        pbar = view.findViewById(R.id.progress_bar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAnimation(new RotateAnimation(0, 180));
 
         mReference = FirebaseDatabase.getInstance().getReference();
+
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Monster>()
                 .setIndexedQuery(setQuery(), mReference.child("monsters/data"), Monster.class)
@@ -101,6 +99,7 @@ public abstract class MonsterFragment extends Fragment {
 //                    }
 //                });
 
+
                 viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -140,8 +139,12 @@ public abstract class MonsterFragment extends Fragment {
                         });
             }
 
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                pbar.setVisibility(View.INVISIBLE);
+            }
         };
-
 
         recyclerView.setAdapter(adapter);
 
@@ -158,7 +161,16 @@ public abstract class MonsterFragment extends Fragment {
         }
     }
 
+    public void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(500);
+        view.startAnimation(anim);
+    }
 
     abstract Query setQuery();
+
+    interface MonsterClickedListener {
+        void onMonsterClicked(Monster monster);
+    }
 
 }

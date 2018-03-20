@@ -35,7 +35,8 @@
                 style="@style/HelpMenuStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="\n\n ----- HELP MENU -----\n\nDesde el drawer puedes navegar a cualquier seccion\n\nUna vez en el fragment hay algunas interacciones como:\n\n\u25CF Long tap: Para añadir a favoritos un mounstro\n\n\u25CF Slide: Estando dentro de un mounstro para cambiar de seccion\n\n\u25CF Write: Para buscar un mounstro en la lista y hacer login"
+                android:text="\n ----- HELP MENU -----\n\nFrom the drawer you can go everywhere in the app\n\nAt the time you are in a section you can use those interactions:\n\n\u25CF Long tap: To add a monster to favorites long tap on it\n\n\u25CF Slide: When you are inside a monster you can use slide your finger to swap between info, pics and videos of the monster\n\n\u25CF Tap: The action of touching the screen, you can use that in a lot of spots\n\nTo exit this window tap the screen.
+\nIf you have any issues send them there:\nbadalid@elpuig.xeill.net"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
