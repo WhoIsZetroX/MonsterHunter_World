@@ -31,17 +31,13 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 public abstract class MonsterFragment extends Fragment {
-    String monsterKey;
+
     interface MonsterClickedListener {
         void onMonsterClicked(Monster monster);
     }
 
     MonsterClickedListener monsterClickedListener;
-
-
     RecyclerView recyclerView;
-
-
     DatabaseReference mReference;
 
     public MonsterFragment() {}
@@ -79,7 +75,7 @@ public abstract class MonsterFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(final MonsterViewHolder viewHolder, final int position, final Monster monster) {
-                monsterKey = getRef(position).getKey();
+                final String monsterKey = getRef(position).getKey();
 
                 viewHolder.name.setText(monster.name);
 
@@ -136,7 +132,6 @@ public abstract class MonsterFragment extends Fragment {
                         new View.OnClickListener(){
                             @Override
                             public void onClick(View view) {
-                                monsterKey = getRef(position).getKey();
                                 MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
                                 monsterViewModel.getMonsterKey().setValue(monsterKey);
                                 monsterClickedListener.onMonsterClicked(monster);
