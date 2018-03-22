@@ -2,16 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.proyectodani2.MonsterDetailsFragment">
+    tools:context="com.example.proyectodani2.MonsterInfo.MonsterDetailsFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
 
 
             <ImageView
@@ -26,15 +26,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:text="Nerugigante"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <TextView
                 android:id="@+id/monsterDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="xd"
-                android:layout_weight="40"/>
+                android:layout_weight="40"
+                android:text="xd" />
         </LinearLayout>
     </ScrollView>
     </FrameLayout>

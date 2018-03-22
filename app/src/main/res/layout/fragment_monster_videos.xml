@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.proyectodani2.MonsterVideosFragment">
+    tools:context="com.example.proyectodani2.MonsterInfo.MonsterVideosFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.youtube.player.YouTubePlayerView
@@ -18,7 +18,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.example.proyectodani2.MonsterVideosFragment">
+tools:contecom.example.proyectodani2.MonsterInfo.MonsterVideosFragmentment">
 
 &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;
 <VideoView
