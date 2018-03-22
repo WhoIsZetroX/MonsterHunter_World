@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MainFragment()).addToBackStack("tag").commit();
+
 
     }
 
@@ -75,7 +77,8 @@ public class MainActivity extends AppCompatActivity
             fragmentClass = MonsterListPagerFragment.class;
 
         } else if (id == R.id.nav_weapons) {
-            Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
+            fragmentClass = WeaponFragment.class;
+            //Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_games) {
             Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_music) {
@@ -94,8 +97,7 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
             }
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).addToBackStack( "tag" ).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContent, fragment).addToBackStack("tag").commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -123,5 +125,4 @@ public class MainActivity extends AppCompatActivity
         });
         popupWindow.showAsDropDown(popupView, 100, 300, 1);
     }
-
 }
