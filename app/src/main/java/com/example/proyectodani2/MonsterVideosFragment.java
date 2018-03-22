@@ -1,27 +1,5 @@
 package com.example.proyectodani2;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.ImageButton;
-import android.widget.MediaController;
-import android.widget.Toast;
-import android.widget.VideoView;
-
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.android.youtube.player.YouTubePlayerSupportFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -52,14 +30,14 @@ public class MonsterVideosFragment extends Fragment {
         transaction.add(R.id.youtube_layout, youTubePlayerFragment).commit();
 
         youTubePlayerFragment.initialize(API_KEY, new OnInitializedListener() {
+
             @Override
             public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
                 if (!wasRestored) {
                     player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
                     player.loadVideo(VIDEO_ID);
                     player.play();
-
-                    }
+                }
             }
 
             @Override
@@ -73,5 +51,4 @@ public class MonsterVideosFragment extends Fragment {
 
         return rootView;
     }
-
 }
