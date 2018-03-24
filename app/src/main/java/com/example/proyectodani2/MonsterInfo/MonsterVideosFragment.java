@@ -37,8 +37,9 @@ public class MonsterVideosFragment extends Fragment {
             public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
                 if (!wasRestored) {
                     player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                    player.loadVideo(VIDEO_ID);
-                    player.play();
+                    player.cueVideo(VIDEO_ID);
+                    // player.loadVideo(VIDEO_ID);
+                    // player.play();
                 }
             }
 
