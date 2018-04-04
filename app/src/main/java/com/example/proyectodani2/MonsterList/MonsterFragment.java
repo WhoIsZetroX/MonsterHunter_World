@@ -10,14 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.proyectodani2.Monster.Monster;
-import com.example.proyectodani2.Monster.MonsterViewModel;
+import com.example.proyectodani2.monster.Monster;
+import com.example.proyectodani2.monster.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

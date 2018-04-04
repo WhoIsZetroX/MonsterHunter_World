@@ -17,7 +17,8 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.proyectodani2.Monster.Monster;
+
+import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.MonsterInfo.MonsterInfoPagerFragment;
 import com.example.proyectodani2.MonsterList.MonsterFragment;
 import com.example.proyectodani2.MonsterList.MonsterListPagerFragment;

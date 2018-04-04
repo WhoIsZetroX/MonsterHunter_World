@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.proyectodani2.Monster.Monster;
-import com.example.proyectodani2.Monster.MonsterViewModel;
+import com.example.proyectodani2.monster.Monster;
+import com.example.proyectodani2.monster.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
