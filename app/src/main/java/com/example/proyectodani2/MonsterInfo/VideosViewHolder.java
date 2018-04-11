@@ -3,6 +3,7 @@ package com.example.proyectodani2.MonsterInfo;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,12 +14,12 @@ import com.example.proyectodani2.R;
  */
 
 public class VideosViewHolder extends RecyclerView.ViewHolder {
-    public FrameLayout flContent;
+    public ImageView ivContent;
     public TextView videoUrl;
 
     public VideosViewHolder(View itemView) {
         super(itemView);
         videoUrl = itemView.findViewById(R.id.videoUrl);
-        flContent = itemView.findViewById(R.id.youtube_layout);
+        ivContent = itemView.findViewById(R.id.thumbnail);
     }
 }

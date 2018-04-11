@@ -1,23 +1,16 @@
 package com.example.proyectodani2.MonsterInfo;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
-import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.android.youtube.player.YouTubePlayerSupportFragment;
-
-import java.util.List;
 
 
 /**
@@ -39,32 +32,24 @@ public class MonsterVideosAdapter extends FirebaseRecyclerAdapter<String, Videos
         System.out.println("MODELLL " + model);
 
         holder.videoUrl.setText(model);
-        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
 
-        holder.flContent.setId(position);
-        FragmentTransaction transaction = context.getChildFragmentManager().beginTransaction();
-        transaction.add(holder.flContent.getId(), youTubePlayerFragment).addToBackStack(null).commit();
+        Glide.with(context)
+                .load(R.drawable.drawericon)
+                .into(holder.ivContent);
 
-        youTubePlayerFragment.initialize(API_KEY, new OnInitializedListener() {
+        holder.ivContent.setContentDescription(model);
 
-            @Override
-            public void onInitializationSuccess(final Provider provider, final YouTubePlayer player, boolean wasRestored) {
-                if (!wasRestored) {
-                    player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                    player.cueVideo(model);
-                    // player.loadVideo(VIDEO_ID);
-                    // player.play();
-                }
-            }
+        holder.itemView.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        VideoViewModel videoViewModel = ViewModelProviders.of(context).get(VideoViewModel.class);
+                        videoViewModel.getVideoKey().setValue(model);
+                        System.out.println(model+" ---- xd");
 
-            @Override
-            public void onInitializationFailure(Provider provider, YouTubeInitializationResult error) {
-                // YouTube error
-                String errorMessage = error.toString();
-                Toast.makeText(context.getActivity(), errorMessage, Toast.LENGTH_LONG).show();
-                Log.d("errorMessage:", errorMessage);
-            }
-        });
+                    }
+                });
+
         System.out.println(model+" ---- xd");
     }
 
