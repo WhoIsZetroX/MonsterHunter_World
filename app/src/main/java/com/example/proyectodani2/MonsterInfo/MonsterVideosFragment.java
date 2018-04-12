@@ -37,7 +37,7 @@ public class MonsterVideosFragment extends Fragment {
 
     private static final String API_KEY = "AIzaSyBa0iMF2ecFOuZWbTT9dvy9QhDcFh7zR";
 
-    private static String VIDEO_ID = "f2MOYNTe2oU";
+    private static String VIDEO_ID = "iNmegyyecu0";
     RecyclerView recyclerView;
     MonsterVideosAdapter monsterVideosAdapter;
     private DatabaseReference mReference = null;
@@ -56,18 +56,18 @@ public class MonsterVideosFragment extends Fragment {
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(rootView.findViewById(R.id.yl).getId(), youTubePlayerFragment).addToBackStack(null).commit();
-        ThumbnailView thumbnailView = rootView.findViewById(R.id.thumbnail);
-        final ImageView lala = rootView.findViewById(R.id.lala);
+        //ThumbnailView thumbnailView = rootView.findViewById(R.id.thumbnail);
+        //final ImageView lala = rootView.findViewById(R.id.lala);
 
-       // Glide.with(this).load("https://img.youtube.com/vi/" + VIDEO_ID + "/hqdefault.jpg").into(lala);
+        // Glide.with(this).load("https://img.youtube.com/vi/" + VIDEO_ID + "/hqdefault.jpg").into(lala);
 
-        thumbnailView.loadThumbnail("https://www.youtube.com/watch?v="+VIDEO_ID, new ImageLoader() {
+       /* thumbnailView.loadThumbnail("https://www.youtube.com/watch?v="+VIDEO_ID, new ImageLoader() {
             @Override
             public Bitmap load(String url) throws IOException {
                 System.out.println("URLLLLLL " + url);
                 return  Picasso.get().load(url).get();
             }
-        });
+        });*/
 
         youTubePlayerFragment.initialize(API_KEY, new YouTubePlayer.OnInitializedListener() {
 
@@ -81,7 +81,7 @@ public class MonsterVideosFragment extends Fragment {
                     videoViewModel.getVideoKey().observe(MonsterVideosFragment.this, new Observer<String>() {
                         @Override
                         public void onChanged(@Nullable String videoKey) {
-                            player.loadVideo(videoKey);
+                            player.cueVideo(videoKey);
                             System.out.println(videoKey + " AAAAAAAAA");
                         }
                     });

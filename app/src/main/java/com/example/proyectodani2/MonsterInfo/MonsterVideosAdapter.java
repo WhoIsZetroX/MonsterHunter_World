@@ -1,6 +1,7 @@
 package com.example.proyectodani2.MonsterInfo;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.codewaves.youtubethumbnailview.ImageLoader;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 
 /**
@@ -31,15 +36,22 @@ public class MonsterVideosAdapter extends FirebaseRecyclerAdapter<String, Videos
     protected void onBindViewHolder(@NonNull VideosViewHolder holder, int position, final @NonNull String model) {
         System.out.println("MODELLL " + model);
 
-        holder.videoUrl.setText(model);
+        //holder.videoUrl.setText(model);
 
-        Glide.with(context)
+        /*Glide.with(context)
                 .load(R.drawable.drawericon)
-                .into(holder.ivContent);
+                .into(holder.thumbnailView);*/
+        holder.thumbnailView.loadThumbnail("https://www.youtube.com/watch?v="+model, new ImageLoader() {
+            @Override
+            public Bitmap load(String url) throws IOException {
+                System.out.println("URLLLLLL " + url);
+                return  Picasso.get().load(url).get();
+            }
+        });
 
-        holder.ivContent.setContentDescription(model);
+        //holder.thumbnailView.setContentDescription(model);
 
-        holder.itemView.setOnClickListener(
+        holder.thumbnailView.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {

@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codewaves.youtubethumbnailview.ThumbnailView;
 import com.example.proyectodani2.R;
 
 /**
@@ -14,12 +15,14 @@ import com.example.proyectodani2.R;
  */
 
 public class VideosViewHolder extends RecyclerView.ViewHolder {
-    public ImageView ivContent;
-    public TextView videoUrl;
+    //public ImageView ivContent;
+    //public TextView videoUrl;
+    public ThumbnailView thumbnailView;
 
     public VideosViewHolder(View itemView) {
         super(itemView);
-        videoUrl = itemView.findViewById(R.id.videoUrl);
-        ivContent = itemView.findViewById(R.id.thumbnail);
+        //videoUrl = itemView.findViewById(R.id.videoUrl);
+        //ivContent = itemView.findViewById(R.id.thumbnail);
+        thumbnailView = itemView.findViewById(R.id.thumbnail);
     }
 }
