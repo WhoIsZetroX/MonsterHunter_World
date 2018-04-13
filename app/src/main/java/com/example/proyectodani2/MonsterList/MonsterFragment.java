@@ -122,7 +122,9 @@ public abstract class MonsterFragment extends Fragment {
             protected void onBindViewHolder(final MonsterViewHolder viewHolder, final int position, final Monster monster) {
                 final String monsterKey = getRef(position).getKey();
 
-                viewHolder.name.setText(monster.name);
+                String monsterName = monster.name;
+                String cap = monsterName.substring(0, 1).toUpperCase() + monsterName.substring(1);
+                viewHolder.name.setText(cap);
 
                 Glide.with(MonsterFragment.this)
                         .load(monster.picUrl)
@@ -198,7 +200,7 @@ public abstract class MonsterFragment extends Fragment {
 
     public void startSearch(){
 
-        Query query = mReference.child("monsters/data").orderByChild("name").startAt(search.getText().toString()).endAt(search.getText().toString()+"\uf8ff");
+        Query query = mReference.child("monsters/data").orderByChild("name").startAt(search.getText().toString().toLowerCase()).endAt(search.getText().toString().toLowerCase()+"\uf8ff");
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Monster>()
                 .setIndexedQuery(query, mReference.child("monsters/data"), Monster.class)
@@ -218,7 +220,9 @@ public abstract class MonsterFragment extends Fragment {
             protected void onBindViewHolder(final MonsterViewHolder viewHolder, final int position, final Monster monster) {
                 final String monsterKey = getRef(position).getKey();
 
-                    viewHolder.name.setText(monster.name);
+                    String monsterName = monster.name;
+                    String cap = monsterName.substring(0, 1).toUpperCase() + monsterName.substring(1);
+                    viewHolder.name.setText(cap);
 
                     Glide.with(MonsterFragment.this)
                             .load(monster.picUrl)
