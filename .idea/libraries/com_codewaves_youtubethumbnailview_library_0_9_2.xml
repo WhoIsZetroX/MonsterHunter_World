@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.codewaves.youtubethumbnailview:library-0.9.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-0.9.2.aar/866340613a0329c993ad59098faaa295/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-0.9.2.aar/866340613a0329c993ad59098faaa295/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.codewaves.youtubethumbnailview/library/0.9.2/f1796e3075d7e332f4fb220e5a6f14203c860ea5/library-0.9.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

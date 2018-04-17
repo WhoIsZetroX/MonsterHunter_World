@@ -1,10 +1,13 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.MonsterInfo;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codewaves.youtubethumbnailview.ThumbnailView;
 import com.example.proyectodani2.R;
 
 /**
@@ -12,12 +15,14 @@ import com.example.proyectodani2.R;
  */
 
 public class VideosViewHolder extends RecyclerView.ViewHolder {
-    public FrameLayout flContent;
-    public TextView videoUrl;
+    //public ImageView ivContent;
+    //public TextView videoUrl;
+    public ThumbnailView thumbnailView;
 
     public VideosViewHolder(View itemView) {
         super(itemView);
-        videoUrl = itemView.findViewById(R.id.videoUrl);
-        flContent = itemView.findViewById(R.id.youtube_layout);
+        //videoUrl = itemView.findViewById(R.id.videoUrl);
+        //ivContent = itemView.findViewById(R.id.thumbnail);
+        thumbnailView = itemView.findViewById(R.id.thumbnail);
     }
 }

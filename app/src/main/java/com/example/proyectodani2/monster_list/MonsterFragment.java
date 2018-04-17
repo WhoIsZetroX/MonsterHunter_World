@@ -7,16 +7,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.RotateAnimation;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.monster.Monster;
-import com.example.proyectodani2.monster.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,6 +38,7 @@ public abstract class MonsterFragment extends Fragment {
     public RecyclerView recyclerView;
     public ProgressBar pbar;
     public DatabaseReference mReference;
+    public EditText search;
     public MonsterFragment() {}
 
     @Override
@@ -54,13 +58,56 @@ public abstract class MonsterFragment extends Fragment {
         recyclerView.setAnimation(new RotateAnimation(0, 180));
 
         mReference = FirebaseDatabase.getInstance().getReference();
+        search = view.findViewById(R.id.search);
+        search.addTextChangedListener(new TextWatcher() {
 
+            public void afterTextChanged(Editable s) {
+
+                if (s.length()==0){
+                    setAdapter();
+                }else {
+                    startSearch();
+                }
+                System.out.println(s.length());
+            }
+
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+
+
+
+        setAdapter();
+
+        return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            monsterClickedListener = (MonsterClickedListener) context; // context==MainActivity
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnButtonClickListener");
+        }
+    }
+
+
+    public abstract Query setQuery();
+
+    public interface MonsterClickedListener {
+        void onMonsterClicked(Monster monster);
+    }
+
+    public void setAdapter(){
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Monster>()
                 .setIndexedQuery(setQuery(), mReference.child("monsters/data"), Monster.class)
                 .setLifecycleOwner(this)
                 .build();
-
 
         FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Monster, MonsterViewHolder>(options) {
             @Override
@@ -75,7 +122,9 @@ public abstract class MonsterFragment extends Fragment {
             protected void onBindViewHolder(final MonsterViewHolder viewHolder, final int position, final Monster monster) {
                 final String monsterKey = getRef(position).getKey();
 
-                viewHolder.name.setText(monster.name);
+                String monsterName = monster.name;
+                String cap = monsterName.substring(0, 1).toUpperCase() + monsterName.substring(1);
+                viewHolder.name.setText(cap);
 
                 Glide.with(MonsterFragment.this)
                         .load(monster.picUrl)
@@ -147,25 +196,105 @@ public abstract class MonsterFragment extends Fragment {
         };
 
         recyclerView.setAdapter(adapter);
-
-        return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            monsterClickedListener = (MonsterClickedListener) context; // context==MainActivity
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnButtonClickListener");
-        }
+    public void startSearch(){
+
+        Query query = mReference.child("monsters/data").orderByChild("name").startAt(search.getText().toString().toLowerCase()).endAt(search.getText().toString().toLowerCase()+"\uf8ff");
+
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Monster>()
+                .setIndexedQuery(query, mReference.child("monsters/data"), Monster.class)
+                .setLifecycleOwner(this)
+                .build();
+
+        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Monster, MonsterViewHolder>(options) {
+            @Override
+            public MonsterViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                return new MonsterViewHolder(inflater.inflate(R.layout.item_monster, viewGroup, false));
+            }
+
+
+
+            @Override
+            protected void onBindViewHolder(final MonsterViewHolder viewHolder, final int position, final Monster monster) {
+                final String monsterKey = getRef(position).getKey();
+
+                    String monsterName = monster.name;
+                    String cap = monsterName.substring(0, 1).toUpperCase() + monsterName.substring(1);
+                    viewHolder.name.setText(cap);
+
+                    Glide.with(MonsterFragment.this)
+                            .load(monster.picUrl)
+                            .into(viewHolder.image);
+
+//                if (true) {
+////                    viewHolder.like.setImageResource(R.drawable.heart_on);
+////                    viewHolder.numLikes.setTextColor(getResources().getColor(R.color.red));
+//                } else {
+////                    viewHolder.like.setImageResource(R.drawable.heart_off);
+////                    viewHolder.numLikes.setTextColor(getResources().getColor(R.color.grey));
+//                }
+
+
+//                viewHolder.numLikes.setText(String.valueOf(post.likeCount));
+//
+//                viewHolder.likeLayout.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        onLikeClicked(postKey);
+//                    }
+//                });
+
+
+                    viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+
+                            mReference.child("monsters").child("favoritos").child(FirebaseAuth.getInstance().getUid()).child(monsterKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    Boolean value = dataSnapshot.getValue(Boolean.class);
+
+                                    if (value == null) {
+                                        Toast.makeText(getActivity(), "Added to favorites!", Toast.LENGTH_LONG).show();
+                                        mReference.child("monsters").child("favoritos").child(FirebaseAuth.getInstance().getUid()).child(monsterKey).setValue(true);
+                                    } else {
+                                        Toast.makeText(getActivity(), "Deleted from favorites!", Toast.LENGTH_LONG).show();
+                                        mReference.child("monsters").child("favoritos").child(FirebaseAuth.getInstance().getUid()).child(monsterKey).setValue(null);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            return true;
+                        }
+                    });
+                    viewHolder.itemView.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
+                                    monsterViewModel.getMonsterKey().setValue(monsterKey);
+                                    monsterClickedListener.onMonsterClicked(monster);
+
+                                }
+                            });
+
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                pbar.setVisibility(View.INVISIBLE);
+            }
+        };
+        recyclerView.setAdapter(adapter);
     }
 
-
-    public abstract Query setQuery();
-
-    public interface MonsterClickedListener {
-        void onMonsterClicked(Monster monster);
-    }
 
 }

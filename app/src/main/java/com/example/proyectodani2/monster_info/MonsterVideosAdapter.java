@@ -1,21 +1,21 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.MonsterInfo;
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.codewaves.youtubethumbnailview.ImageLoader;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
-import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 
 /**
@@ -36,33 +36,32 @@ public class MonsterVideosAdapter extends FirebaseRecyclerAdapter<String, Videos
     protected void onBindViewHolder(@NonNull VideosViewHolder holder, int position, final @NonNull String model) {
         System.out.println("MODELLL " + model);
 
-        holder.videoUrl.setText(model);
-        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+        //holder.videoUrl.setText(model);
 
-        holder.flContent.setId(position);
-        FragmentTransaction transaction = context.getChildFragmentManager().beginTransaction();
-        transaction.add(holder.flContent.getId(), youTubePlayerFragment).addToBackStack(null).commit();
-
-        youTubePlayerFragment.initialize(API_KEY, new OnInitializedListener() {
-
+        /*Glide.with(context)
+                .load(R.drawable.drawericon)
+                .into(holder.thumbnailView);*/
+        holder.thumbnailView.loadThumbnail("https://www.youtube.com/watch?v="+model, new ImageLoader() {
             @Override
-            public void onInitializationSuccess(final Provider provider, final YouTubePlayer player, boolean wasRestored) {
-                if (!wasRestored) {
-                    player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                    player.cueVideo(model);
-                    // player.loadVideo(VIDEO_ID);
-                    // player.play();
-                }
-            }
-
-            @Override
-            public void onInitializationFailure(Provider provider, YouTubeInitializationResult error) {
-                // YouTube error
-                String errorMessage = error.toString();
-                Toast.makeText(context.getActivity(), errorMessage, Toast.LENGTH_LONG).show();
-                Log.d("errorMessage:", errorMessage);
+            public Bitmap load(String url) throws IOException {
+                System.out.println("URLLLLLL " + url);
+                return  Picasso.get().load(url).get();
             }
         });
+
+        //holder.thumbnailView.setContentDescription(model);
+
+        holder.thumbnailView.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        VideoViewModel videoViewModel = ViewModelProviders.of(context).get(VideoViewModel.class);
+                        videoViewModel.getVideoKey().setValue(model);
+                        System.out.println(model+" ---- xd");
+
+                    }
+                });
+
         System.out.println(model+" ---- xd");
     }
 
