@@ -1,4 +1,4 @@
-package com.example.proyectodani2.Main;
+package com.example.proyectodani2.start_menu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,17 +18,19 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
+import com.example.proyectodani2.weapon.Weapon;
+import com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment;
+import com.example.proyectodani2.weapon_list.WeaponAllFragment;
 import com.example.proyectodani2.monster.Monster;
-import com.example.proyectodani2.MonsterInfo.MonsterInfoPagerFragment;
-import com.example.proyectodani2.MonsterList.MonsterFragment;
-import com.example.proyectodani2.MonsterList.MonsterListPagerFragment;
+import com.example.proyectodani2.monster_info.MonsterInfoPagerFragment;
+import com.example.proyectodani2.monster_list.MonsterFragment;
+import com.example.proyectodani2.monster_list.MonsterListPagerFragment;
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.Others.SettingsActivity;
-import com.example.proyectodani2.WeaponList.WeaponFragment;
+import com.example.proyectodani2.others_things.SettingsActivity;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MonsterFragment.MonsterClickedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MonsterFragment.MonsterClickedListener, WeaponAllFragment.WeaponClickedListener {
 
     // Popup
     private LayoutInflater layoutInflater;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity
             fragmentClass = MonsterListPagerFragment.class;
 
         } else if (id == R.id.nav_weapons) {
-            fragmentClass = WeaponFragment.class;
+            fragmentClass = WeaponAllFragment.class;
             //Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_games) {
             Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
@@ -110,11 +112,14 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     @Override
     public void onMonsterClicked(Monster monster) {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MonsterInfoPagerFragment()).commit();
+    }
+    @Override
+    public void onWeaponClicked(Weapon weapon){
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new WeaponInfoPagerFragment()).commit();
     }
 
     void abrirPopUp(){

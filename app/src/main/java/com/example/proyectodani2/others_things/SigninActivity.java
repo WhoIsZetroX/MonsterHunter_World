@@ -1,4 +1,4 @@
-package com.example.proyectodani2.Others;
+package com.example.proyectodani2.others_things;
 
 
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 
-import com.example.proyectodani2.Main.MainActivity;
+import com.example.proyectodani2.start_menu.MainActivity;
 import com.example.proyectodani2.R;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;

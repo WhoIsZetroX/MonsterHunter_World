@@ -1,7 +1,7 @@
-package com.example.proyectodani2.MonsterList;
-
+package com.example.proyectodani2.monster_list;
 
 import android.arch.lifecycle.ViewModelProviders;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterList;
+package com.example.proyectodani2.weapon_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,14 +11,14 @@ import com.example.proyectodani2.R;
  * Created by dam2a on 30/01/18.
  */
 
-public class MonsterViewHolder extends RecyclerView.ViewHolder {
+public class WeaponViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
     TextView name;
 
-    public MonsterViewHolder(View itemView) {
+    public WeaponViewHolder(View itemView) {
         super(itemView);
 
-        image = itemView.findViewById(R.id.monster_image);
-        name = itemView.findViewById(R.id.monster_name);
+        image = itemView.findViewById(R.id.weapon_image);
+        name = itemView.findViewById(R.id.weapon_name);
     }
 }

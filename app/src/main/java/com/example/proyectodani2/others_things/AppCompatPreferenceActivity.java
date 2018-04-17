@@ -1,4 +1,4 @@
-package com.example.proyectodani2.Others;
+package com.example.proyectodani2.others_things;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

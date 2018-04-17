@@ -1,9 +1,8 @@
-package com.example.proyectodani2.MonsterInfo;
+package com.example.proyectodani2.monster_info;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.proyectodani2.R;

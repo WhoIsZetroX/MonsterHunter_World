@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterInfo;
+package com.example.proyectodani2.monster_info;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -16,8 +16,6 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
-
-import java.util.List;
 
 
 /**

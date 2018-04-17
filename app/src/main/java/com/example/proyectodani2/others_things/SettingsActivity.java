@@ -1,4 +1,4 @@
-package com.example.proyectodani2.Others;
+package com.example.proyectodani2.others_things;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,7 +19,7 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
-import com.example.proyectodani2.Main.MainActivity;
+import com.example.proyectodani2.start_menu.MainActivity;
 import com.example.proyectodani2.R;
 
 import java.util.List;

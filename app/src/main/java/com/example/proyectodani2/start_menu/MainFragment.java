@@ -1,4 +1,4 @@
-package com.example.proyectodani2.WeaponList;
+package com.example.proyectodani2.start_menu;
 
 
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import com.example.proyectodani2.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WeaponFragment extends Fragment {
+public class MainFragment extends Fragment {
 
 
-    public WeaponFragment() {
-        // Required empty public constructor
+    public MainFragment() {
+
     }
 
 
@@ -25,8 +25,7 @@ public class WeaponFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weapon, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
-
 
 }

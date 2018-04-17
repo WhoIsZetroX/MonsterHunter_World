@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterList;
+package com.example.proyectodani2.monster_list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

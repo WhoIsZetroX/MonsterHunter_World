@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterInfo;
+package com.example.proyectodani2.monster_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
