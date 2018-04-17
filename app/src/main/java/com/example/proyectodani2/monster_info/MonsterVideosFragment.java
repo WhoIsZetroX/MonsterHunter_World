@@ -21,6 +21,8 @@ import com.codewaves.youtubethumbnailview.ImageLoader;
 import com.codewaves.youtubethumbnailview.ThumbnailLoader;
 import com.codewaves.youtubethumbnailview.ThumbnailView;
 import com.codewaves.youtubethumbnailview.downloader.OembedVideoInfoDownloader;
+import com.example.proyectodani2.MonsterInfo.MonsterVideosAdapter;
+import com.example.proyectodani2.MonsterInfo.VideoViewModel;
 import com.example.proyectodani2.MonsterList.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
