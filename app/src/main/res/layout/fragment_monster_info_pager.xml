@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.proyectodani2.MonsterInfo.MonsterInfoPagerFragment">
+    tools:context="com.example.proyectodani2.monster_info.MonsterInfoPagerFragment">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/MonsterInfoPagerContainer"

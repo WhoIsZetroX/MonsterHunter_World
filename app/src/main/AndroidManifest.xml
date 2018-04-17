@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main.MainActivity"
+            android:name=".start_menu.MainActivity"
             android:label="MHW WIKIA"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Others.SigninActivity">
+        <activity android:name=".others_things.SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Others.SettingsActivity"
+            android:name=".others_things.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
     </application>
 

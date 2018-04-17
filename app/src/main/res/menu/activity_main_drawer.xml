@@ -21,6 +21,7 @@
             android:id="@+id/nav_music"
             android:icon="@drawable/musicicon"
             android:title="Music" />
+
     </group>
 
     <item
