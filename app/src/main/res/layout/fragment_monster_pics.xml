@@ -9,30 +9,12 @@
          android:layout_width="match_parent"
          android:layout_height="match_parent" />
 
-     <!--    <ScrollView
+   <!--  <android.support.design.widget.FloatingActionButton
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="bottom|right"
+         android:layout_marginBottom="10dp"
+         android:layout_marginRight="10dp"
+         android:background="@android:drawable/ic_menu_add" />-->
 
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-
-
-             <LinearLayout
-                 android:id="@+id/linearLayout"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:orientation="vertical">
-                    &lt;!&ndash; <android.support.v7.widget.RecyclerView
-                         android:id="@+id/recyclerview"
-                         android:layout_width="match_parent"
-                         android:layout_height="match_parent">&ndash;&gt;
-
-                             <ImageView
-                                 android:id="@+id/imageiv"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content" />
-
-             &lt;!&ndash;
-                     </android.support.v7.widget.RecyclerView>
-             &ndash;&gt;
-             </LinearLayout>
-         </ScrollView>-->
 </FrameLayout>

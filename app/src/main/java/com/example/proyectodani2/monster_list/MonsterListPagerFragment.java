@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.example.proyectodani2.R;
 
-
 public class MonsterListPagerFragment extends Fragment {
 
     View view;
@@ -54,7 +53,6 @@ public class MonsterListPagerFragment extends Fragment {
              } else if(position == 1) {
                 return new MonsterFavFragment();
             }
-
             return new MonstersAllFragment();
         }
 
