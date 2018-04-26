@@ -2,7 +2,6 @@ package com.example.proyectodani2.monster_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,17 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.codewaves.youtubethumbnailview.ImageLoader;
 import com.codewaves.youtubethumbnailview.ThumbnailLoader;
-import com.codewaves.youtubethumbnailview.ThumbnailView;
 import com.codewaves.youtubethumbnailview.downloader.OembedVideoInfoDownloader;
-import com.example.proyectodani2.MonsterInfo.MonsterVideosAdapter;
-import com.example.proyectodani2.MonsterInfo.VideoViewModel;
-import com.example.proyectodani2.MonsterList.MonsterViewModel;
+import com.example.proyectodani2.monsterInfo.MonsterVideosAdapter;
+import com.example.proyectodani2.monsterInfo.VideoViewModel;
+import com.example.proyectodani2.monsterList.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -31,9 +26,6 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
 
 public class MonsterVideosFragment extends Fragment {
 

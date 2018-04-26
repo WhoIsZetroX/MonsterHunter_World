@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterInfo;
+package com.example.proyectodani2.monsterInfo;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

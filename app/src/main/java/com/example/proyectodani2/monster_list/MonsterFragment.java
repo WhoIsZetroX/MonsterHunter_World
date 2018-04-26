@@ -14,12 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.RotateAnimation;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.proyectodani2.MonsterList.MonsterViewModel;
+import com.example.proyectodani2.monsterList.MonsterViewModel;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

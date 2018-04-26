@@ -1,4 +1,4 @@
-package com.example.proyectodani2.MonsterInfo;
+package com.example.proyectodani2.monsterInfo;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Bitmap;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.codewaves.youtubethumbnailview.ImageLoader;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
