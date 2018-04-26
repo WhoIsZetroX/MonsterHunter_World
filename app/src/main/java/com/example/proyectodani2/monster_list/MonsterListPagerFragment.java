@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.start_menu.MainActivity;
 
 public class MonsterListPagerFragment extends Fragment {
 
@@ -34,9 +35,10 @@ public class MonsterListPagerFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_monster_list_pager, container, false);
 
-        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
+        tabLayout.removeAllTabs();
+        tabLayout.addTab(tabLayout.newTab().setText("All"));
+        tabLayout.addTab(tabLayout.newTab().setText("Favorites"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 

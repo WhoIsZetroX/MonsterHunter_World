@@ -7,6 +7,7 @@
     tools:context="com.example.proyectodani2.start_menu.MainActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -17,6 +18,15 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="#FFFFFF"
+            app:tabSelectedTextColor="#FF0000"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentTop="true"/>
 
     </android.support.design.widget.AppBarLayout>
 
