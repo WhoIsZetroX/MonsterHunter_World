@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.proyectodani2.R;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_list.MonsterViewModel;
-import com.example.proyectodani2.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +27,7 @@ public class MonsterDetailsFragment extends Fragment {
 
     //XML
     TextView monsterName, monsterDesc;
-    ImageView imageMonster;
+    ImageView monsterImage;
     //Conectar a la base de datos
     private DatabaseReference mDatabase = null;
 
@@ -44,7 +44,7 @@ public class MonsterDetailsFragment extends Fragment {
 
         monsterName = view.findViewById(R.id.monsterName);
         monsterDesc = view.findViewById(R.id.monsterDesc);
-        imageMonster = view.findViewById(R.id.imageMonster);
+        monsterImage = view.findViewById(R.id.monsterImage);
 
         //String monsterKey="-L5PJ79zN1mmghpBW2KV";
         MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
@@ -74,7 +74,7 @@ public class MonsterDetailsFragment extends Fragment {
 
                         monsterName.setText(monster.name);
                         monsterDesc.setText(monster.desc);
-                        Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(imageMonster);
+                        Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(monsterImage);
                     }
 
                     @Override
