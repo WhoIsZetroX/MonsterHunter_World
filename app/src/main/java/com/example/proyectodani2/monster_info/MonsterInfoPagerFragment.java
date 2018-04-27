@@ -1,6 +1,7 @@
 package com.example.proyectodani2.monster_info;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.start_menu.MainActivity;
 
 
 public class MonsterInfoPagerFragment extends Fragment {
@@ -32,6 +34,30 @@ public class MonsterInfoPagerFragment extends Fragment {
         mViewPager = view.findViewById(R.id.MonsterInfoPagerContainer);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
+        tabLayout.removeAllTabs();
+        tabLayout.addTab(tabLayout.newTab().setText("Details"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pics"));
+        tabLayout.addTab(tabLayout.newTab().setText("Videos"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         return view;
     }
 
