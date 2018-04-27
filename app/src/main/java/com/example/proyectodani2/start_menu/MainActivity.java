@@ -136,12 +136,7 @@ public class MainActivity extends AppCompatActivity
         popupView = layoutInflater.inflate(R.layout.popup, null);
         popupWindow = new PopupWindow(popupView, RadioGroup.LayoutParams.WRAP_CONTENT,
                 RadioGroup.LayoutParams.WRAP_CONTENT);
-        popupView.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
+        popupWindow.setOutsideTouchable(true);
         popupWindow.showAsDropDown(popupView, 100, 300, 1);
     }
 }
