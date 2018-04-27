@@ -4,6 +4,7 @@ package com.example.proyectodani2.weapon_list;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.start_menu.MainActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon.WeaponViewModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -43,6 +45,11 @@ public class WeaponAllFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_weapon_all, container, false);
+
+        TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
+        tabLayout.removeAllTabs();
+        tabLayout.addTab(tabLayout.newTab().setText("All weapons"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         recyclerView = view.findViewById(R.id.recycler);
         pbar = view.findViewById(R.id.progress_bar);
