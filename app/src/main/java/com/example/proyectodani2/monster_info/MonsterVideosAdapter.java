@@ -1,4 +1,4 @@
-package com.example.proyectodani2.monsterInfo;
+package com.example.proyectodani2.monster_info;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Bitmap;

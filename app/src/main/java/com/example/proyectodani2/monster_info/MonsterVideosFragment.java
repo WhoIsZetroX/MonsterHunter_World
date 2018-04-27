@@ -16,9 +16,8 @@ import android.widget.Toast;
 
 import com.codewaves.youtubethumbnailview.ThumbnailLoader;
 import com.codewaves.youtubethumbnailview.downloader.OembedVideoInfoDownloader;
-import com.example.proyectodani2.monsterInfo.MonsterVideosAdapter;
-import com.example.proyectodani2.monsterInfo.VideoViewModel;
-import com.example.proyectodani2.monsterList.MonsterViewModel;
+import com.example.proyectodani2.monster_info.MonsterVideosAdapter;
+import com.example.proyectodani2.monster_list.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.youtube.player.YouTubeInitializationResult;

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.proyectodani2.monsterList.MonsterViewModel;
+import com.example.proyectodani2.monster_list.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;

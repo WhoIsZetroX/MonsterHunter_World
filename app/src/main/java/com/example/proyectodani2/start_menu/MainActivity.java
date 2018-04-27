@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMonsterClicked(Monster monster) {
+    public void onMonsterOptionClicked(Monster monster) {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MonsterInfoPagerFragment()).commit();
     }
     @Override
-    public void onWeaponClicked(Weapon weapon){
+    public void onWeaponOptionClicked(Weapon weapon) {
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new WeaponInfoPagerFragment()).commit();
     }
 

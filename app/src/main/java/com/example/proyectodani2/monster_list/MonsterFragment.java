@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.proyectodani2.monsterList.MonsterViewModel;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -97,10 +96,6 @@ public abstract class MonsterFragment extends Fragment {
 
 
     public abstract Query setQuery();
-
-    public interface MonsterClickedListener {
-        void onMonsterClicked(Monster monster);
-    }
 
     public void setAdapter(){
 
@@ -182,7 +177,7 @@ public abstract class MonsterFragment extends Fragment {
                             public void onClick(View view) {
                                 MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
                                 monsterViewModel.getMonsterKey().setValue(monsterKey);
-                                monsterClickedListener.onMonsterClicked(monster);
+                                monsterClickedListener.onMonsterOptionClicked(monster);
 
                             }
                         });
@@ -280,7 +275,7 @@ public abstract class MonsterFragment extends Fragment {
                                 public void onClick(View view) {
                                     MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
                                     monsterViewModel.getMonsterKey().setValue(monsterKey);
-                                    monsterClickedListener.onMonsterClicked(monster);
+                                    monsterClickedListener.onMonsterOptionClicked(monster);
 
                                 }
                             });
@@ -294,6 +289,10 @@ public abstract class MonsterFragment extends Fragment {
             }
         };
         recyclerView.setAdapter(adapter);
+    }
+
+    public interface MonsterClickedListener {
+        void onMonsterOptionClicked(Monster monster);
     }
 
 

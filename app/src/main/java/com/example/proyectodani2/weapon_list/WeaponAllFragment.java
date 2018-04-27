@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
@@ -84,7 +83,7 @@ public class WeaponAllFragment extends Fragment {
                             public void onClick(View view) {
                                 WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
                                 weaponViewModel.getWeaponKey().setValue(weaponKey);
-                                weaponClickedListener.onWeaponClicked(weapon);
+                                weaponClickedListener.onWeaponOptionClicked(weapon);
 
                             }
                         });
@@ -118,6 +117,6 @@ public class WeaponAllFragment extends Fragment {
     }
 
     public interface WeaponClickedListener {
-        void onWeaponClicked(Weapon weapon);
+        void onWeaponOptionClicked(Weapon weapon);
     }
 }

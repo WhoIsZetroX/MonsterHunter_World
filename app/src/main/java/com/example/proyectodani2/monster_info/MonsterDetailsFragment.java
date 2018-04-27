@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.monster.Monster;
-import com.example.proyectodani2.monsterList.MonsterViewModel;
+import com.example.proyectodani2.monster_list.MonsterViewModel;
 import com.example.proyectodani2.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
