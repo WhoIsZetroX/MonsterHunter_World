@@ -10,12 +10,12 @@ import com.example.proyectodani2.R;
  * Created by dam2a on 03/04/18.
  */
 
-public class VideosViewHolder extends RecyclerView.ViewHolder {
+public class MonsterVideosViewHolder extends RecyclerView.ViewHolder {
     //public ImageView ivContent;
     //public TextView videoUrl;
     public ThumbnailView thumbnailView;
 
-    public VideosViewHolder(View itemView) {
+    public MonsterVideosViewHolder(View itemView) {
         super(itemView);
         //videoUrl = itemView.findViewById(R.id.videoUrl);
         //ivContent = itemView.findViewById(R.id.thumbnail);

@@ -1,4 +1,4 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.weapon_info;
 
 
 import android.arch.lifecycle.Observer;
@@ -15,21 +15,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.monster_list.MonsterViewModel;
+import com.example.proyectodani2.weapon_list.WeaponViewModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MonsterPicsFragment extends Fragment {
+public class WeaponPicsFragment extends Fragment {
     //XML
-    ImageView imageMonster;
+    ImageView imageWeapon;
     LinearLayout linearLayout;
     RecyclerView recyclerView;
-    MonsterPicsAdapter monsterPicsAdapter;
+    WeaponPicsAdapter weaponPicsAdapter;
     //Conectar a la base de datos
     private DatabaseReference mReference = null;
 
-    public MonsterPicsFragment() {
+    public WeaponPicsFragment() {
         // Required empty public constructor
     }
 
@@ -38,37 +38,34 @@ public class MonsterPicsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_monster_pics, container, false);
+        View view = inflater.inflate(R.layout.fragment_weapon_pics, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        MonsterViewModel MonsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
-        MonsterViewModel.getMonsterKey().observe(this, new Observer<String>() {
+        WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
+        weaponViewModel.getWeaponKey().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String monsterKey) {
-                loadMonsterPics(monsterKey);
+            public void onChanged(@Nullable String weaponKey) {
+                loadWeaponPics(weaponKey);
             }
         });
-
-        //showMonsterKey(monsterKey);
-
         return view;
 
     }
 
-    void loadMonsterPics(final String monsterKey) {
+    void loadWeaponPics(final String weaponKey) {
         mReference = FirebaseDatabase.getInstance().getReference();
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<String>()
-                .setQuery(mReference.child("monsters/data").child(monsterKey).child("monsterPics"), String.class)
+                .setQuery(mReference.child("weapons/data").child(weaponKey).child("weaponPics"), String.class)
                 .setLifecycleOwner(this)
                 .build();
 
-        monsterPicsAdapter = new MonsterPicsAdapter(getActivity(), options);
-        recyclerView.setAdapter(monsterPicsAdapter);
+        weaponPicsAdapter = new WeaponPicsAdapter(getActivity(), options);
+        recyclerView.setAdapter(weaponPicsAdapter);
 
-        monsterPicsAdapter.startListening();
+        weaponPicsAdapter.startListening();
     }
 
     //Metodo para mostrar los datos del monstruo seleccionado
@@ -108,9 +105,5 @@ public class MonsterPicsFragment extends Fragment {
                         Log.w("tag", "getUser:onCancelled", databaseError.toException());
                     }
                 });
-
-
     }*/
-
-
 }

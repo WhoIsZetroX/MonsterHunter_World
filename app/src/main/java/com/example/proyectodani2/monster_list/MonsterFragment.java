@@ -1,7 +1,6 @@
 package com.example.proyectodani2.monster_list;
 
 import android.arch.lifecycle.ViewModelProviders;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,8 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.monster.Monster;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -175,8 +174,8 @@ public abstract class MonsterFragment extends Fragment {
                         new View.OnClickListener(){
                             @Override
                             public void onClick(View view) {
-                                MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
-                                monsterViewModel.getMonsterKey().setValue(monsterKey);
+                                MonsterViewModel MonsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
+                                MonsterViewModel.getMonsterKey().setValue(monsterKey);
                                 monsterClickedListener.onMonsterOptionClicked(monster);
 
                             }
@@ -273,8 +272,8 @@ public abstract class MonsterFragment extends Fragment {
                             new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
-                                    monsterViewModel.getMonsterKey().setValue(monsterKey);
+                                    MonsterViewModel MonsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
+                                    MonsterViewModel.getMonsterKey().setValue(monsterKey);
                                     monsterClickedListener.onMonsterOptionClicked(monster);
 
                                 }

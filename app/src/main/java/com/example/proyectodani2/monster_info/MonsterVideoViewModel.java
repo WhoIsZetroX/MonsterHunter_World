@@ -9,11 +9,11 @@ import android.support.annotation.NonNull;
  * Created by dam2a on 10/04/18.
  */
 
-public class VideoViewModel extends AndroidViewModel {
+public class MonsterVideoViewModel extends AndroidViewModel {
 
     MutableLiveData<String> videoKey;
 
-    public VideoViewModel(@NonNull Application application) {
+    public MonsterVideoViewModel(@NonNull Application application) {
         super(application);
     }
 
@@ -21,7 +21,6 @@ public class VideoViewModel extends AndroidViewModel {
         if (videoKey == null) {
             videoKey = new MutableLiveData<>();
         }
-        System.out.println(videoKey.getValue() + " ---- HAHA");
         return videoKey;
     }
 }

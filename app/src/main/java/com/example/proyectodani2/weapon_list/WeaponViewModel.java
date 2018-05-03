@@ -1,4 +1,4 @@
-package com.example.proyectodani2.weapon;
+package com.example.proyectodani2.weapon_list;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

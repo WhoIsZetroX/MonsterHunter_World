@@ -1,4 +1,4 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.weapon_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.codewaves.youtubethumbnailview.ThumbnailLoader;
 import com.codewaves.youtubethumbnailview.downloader.OembedVideoInfoDownloader;
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.monster_list.MonsterViewModel;
+import com.example.proyectodani2.weapon_list.WeaponViewModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -25,13 +25,13 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MonsterVideosFragment extends Fragment {
+public class WeaponVideosFragment extends Fragment {
 
     private static final String API_KEY = "AIzaSyBa0iMF2ecFOuZWbTT9dvy9QhDcFh7zR";
 
     private static String VIDEO_ID = "iNmegyyecu0";
     RecyclerView recyclerView;
-    MonsterVideosAdapter monsterVideosAdapter;
+    com.example.proyectodani2.weapon_info.WeaponVideosAdapter weaponVideosAdapter;
     private DatabaseReference mReference = null;
 
     @Override
@@ -68,13 +68,11 @@ public class MonsterVideosFragment extends Fragment {
                 if (!wasRestored) {
                     player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
                     player.cueVideo(VIDEO_ID);
-                    System.out.println("onInitiailaodnaodnodgfdgf");
-                    MonsterVideoViewModel monsterVideoViewModel = ViewModelProviders.of(MonsterVideosFragment.this).get(MonsterVideoViewModel.class);
-                    monsterVideoViewModel.getVideoKey().observe(MonsterVideosFragment.this, new Observer<String>() {
+                    WeaponVideoViewModel weaponVideoViewModel = ViewModelProviders.of(WeaponVideosFragment.this).get(WeaponVideoViewModel.class);
+                    weaponVideoViewModel.getVideoKey().observe(WeaponVideosFragment.this, new Observer<String>() {
                         @Override
                         public void onChanged(@Nullable String videoKey) {
                             player.cueVideo(videoKey);
-                            System.out.println(videoKey + " AAAAAAAAA");
                         }
                     });
                     // player.loadVideo(VIDEO_ID);
@@ -91,12 +89,11 @@ public class MonsterVideosFragment extends Fragment {
             }
         });
 
-        MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
-        monsterViewModel.getMonsterKey().observe(this, new Observer<String>() {
+        WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
+        weaponViewModel.getWeaponKey().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String monsterKey) {
-                loadMonsterVideos(monsterKey);
-                System.out.println(monsterKey + " AAAAAAAAA");
+            public void onChanged(@Nullable String weaponKey) {
+                loadWeaponVideos(weaponKey);
             }
         });
 
@@ -106,19 +103,18 @@ public class MonsterVideosFragment extends Fragment {
 
     }
 
-    void loadMonsterVideos(final String monsterKey) {
+    void loadWeaponVideos(final String weaponKey) {
         mReference = FirebaseDatabase.getInstance().getReference();
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<String>()
-                .setQuery(mReference.child("monsters/data").child(monsterKey).child("monsterVideos"), String.class)
+                .setQuery(mReference.child("weapons/data").child(weaponKey).child("weaponVideos"), String.class)
                 .setLifecycleOwner(this)
                 .build();
 
-        System.out.println("MONSTERKEY = " + monsterKey);
-        monsterVideosAdapter = new MonsterVideosAdapter(this, options);
-        recyclerView.setAdapter(monsterVideosAdapter);
+        weaponVideosAdapter = new WeaponVideosAdapter(this, options);
+        recyclerView.setAdapter(weaponVideosAdapter);
 
-        monsterVideosAdapter.startListening();
+        weaponVideosAdapter.startListening();
     }
 
     /*

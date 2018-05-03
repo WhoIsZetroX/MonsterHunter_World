@@ -11,9 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.proyectodani2.monster_info.MonsterDetailsFragment;
-import com.example.proyectodani2.monster_info.MonsterPicsFragment;
-import com.example.proyectodani2.monster_info.MonsterVideosFragment;
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.start_menu.MainActivity;
 
@@ -35,11 +32,11 @@ public class WeaponInfoPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_monster_info_pager, container, false);
+        View view = inflater.inflate(R.layout.fragment_weapon_info_pager, container, false);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
-        mViewPager = view.findViewById(R.id.MonsterInfoPagerContainer);
+        mViewPager = view.findViewById(R.id.WeaponInfoPagerContainer);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
@@ -83,12 +80,12 @@ public class WeaponInfoPagerFragment extends Fragment {
             // Return a PlaceholderFragment (defined as a static inner class below).
             if(position == 0) {
             } else if(position == 1) {
-                return new MonsterPicsFragment();
+                return new WeaponPicsFragment();
             } else if(position == 2) {
-                return new MonsterVideosFragment();
+                return new WeaponVideosFragment();
             }
             // este es el fragment por defecto del pager?
-            return new MonsterDetailsFragment();
+            return new WeaponDetailFragment();
         }
 
         @Override

@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.start_menu.MainActivity;
 import com.example.proyectodani2.weapon.Weapon;
-import com.example.proyectodani2.weapon.WeaponViewModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;

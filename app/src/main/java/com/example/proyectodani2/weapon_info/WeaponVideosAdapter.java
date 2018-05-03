@@ -1,4 +1,4 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.weapon_info;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Bitmap;
@@ -21,46 +21,46 @@ import java.io.IOException;
  * Created by dam2a on 03/04/18.
  */
 
-public class MonsterVideosAdapter extends FirebaseRecyclerAdapter<String, MonsterVideosViewHolder> {
+public class WeaponVideosAdapter extends FirebaseRecyclerAdapter<String, WeaponVideosViewHolder> {
 
-    Fragment context;
     private static final String API_KEY = "AIzaSyBa0iMF2ecFOuZWbTT9dvy9QhDcFh7zR";
+    Fragment context;
 
-    public MonsterVideosAdapter(Fragment context, @NonNull FirebaseRecyclerOptions<String> options) {
+    public WeaponVideosAdapter(Fragment context, @NonNull FirebaseRecyclerOptions<String> options) {
         super(options);
         this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MonsterVideosViewHolder holder, int position, final @NonNull String model) {
+    protected void onBindViewHolder(@NonNull WeaponVideosViewHolder holder, int position, final @NonNull String model) {
+
         //holder.videoUrl.setText(model);
 
         /*Glide.with(context)
                 .load(R.drawable.drawericon)
                 .into(holder.thumbnailView);*/
-        holder.thumbnailView.loadThumbnail("https://www.youtube.com/watch?v="+model, new ImageLoader() {
+        holder.thumbnailView.loadThumbnail("https://www.youtube.com/watch?v=" + model, new ImageLoader() {
             @Override
             public Bitmap load(String url) throws IOException {
-                return  Picasso.get().load(url).get();
+                return Picasso.get().load(url).get();
             }
         });
 
         //holder.thumbnailView.setContentDescription(model);
 
         holder.thumbnailView.setOnClickListener(
-                new View.OnClickListener(){
+                new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MonsterVideoViewModel monsterVideoViewModel = ViewModelProviders.of(context).get(MonsterVideoViewModel.class);
-                        monsterVideoViewModel.getVideoKey().setValue(model);
+                        WeaponVideoViewModel weaponVideoViewModel = ViewModelProviders.of(context).get(WeaponVideoViewModel.class);
+                        weaponVideoViewModel.getVideoKey().setValue(model);
                     }
                 });
     }
 
     @Override
-    public MonsterVideosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WeaponVideosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new MonsterVideosViewHolder(inflater.inflate(R.layout.item_monstervideo, parent, false));
+        return new WeaponVideosViewHolder(inflater.inflate(R.layout.item_weaponvideo, parent, false));
     }
-
 }

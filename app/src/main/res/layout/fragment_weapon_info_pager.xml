@@ -6,7 +6,7 @@
     tools:context="com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment">
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/MonsterInfoPagerContainer"
+        android:id="@+id/WeaponInfoPagerContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

@@ -10,10 +10,10 @@ import com.example.proyectodani2.R;
  * Created by dam2a on 01/03/18.
  */
 
-public class ImagesViewHolder extends RecyclerView.ViewHolder {
+public class MonsterImagesViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivContent;
 
-    public ImagesViewHolder(View itemView) {
+    public MonsterImagesViewHolder(View itemView) {
         super(itemView);
         ivContent = itemView.findViewById(R.id.imageMonsterPics);
     }

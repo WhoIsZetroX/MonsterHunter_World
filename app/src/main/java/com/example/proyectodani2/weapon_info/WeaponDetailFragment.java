@@ -1,4 +1,4 @@
-package com.example.proyectodani2.monster_info;
+package com.example.proyectodani2.weapon_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.monster.Monster;
-import com.example.proyectodani2.monster_list.MonsterViewModel;
+import com.example.proyectodani2.weapon.Weapon;
+import com.example.proyectodani2.weapon_list.WeaponViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,15 +23,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class MonsterDetailsFragment extends Fragment {
+public class WeaponDetailFragment extends Fragment {
 
     //XML
-    TextView monsterName, monsterDesc;
-    ImageView monsterImage;
+    TextView weaponName, weaponDesc;
+    ImageView weaponImage, weaponFlow;
     //Conectar a la base de datos
     private DatabaseReference mDatabase = null;
 
-    public MonsterDetailsFragment() {
+    public WeaponDetailFragment() {
         // Required empty public constructor
     }
 
@@ -40,18 +40,19 @@ public class MonsterDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_monster_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_weapon_detail, container, false);
 
-        monsterName = view.findViewById(R.id.monsterName);
-        monsterDesc = view.findViewById(R.id.monsterDesc);
-        monsterImage = view.findViewById(R.id.monsterImage);
+        weaponName = view.findViewById(R.id.weaponName);
+        weaponDesc = view.findViewById(R.id.weaponDesc);
+        weaponImage = view.findViewById(R.id.weaponImage);
+        weaponFlow = view.findViewById(R.id.weaponFlow);
 
         //String monsterKey="-L5PJ79zN1mmghpBW2KV";
-        MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
-        monsterViewModel.getMonsterKey().observe(this, new Observer<String>() {
+        WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
+        weaponViewModel.getWeaponKey().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String monsterKey) {
-                showMonsterKey(monsterKey);
+            public void onChanged(@Nullable String weaponKey) {
+                showWeaponKey(weaponKey);
             }
         });
 
@@ -62,19 +63,20 @@ public class MonsterDetailsFragment extends Fragment {
     }
 
     //Metodo para mostrar los datos del monstruo seleccionado
-    void showMonsterKey(String monsterKey){
+    void showWeaponKey(String weaponKey) {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("monsters").child("data").child(monsterKey).addListenerForSingleValueEvent(
+        mDatabase.child("weapons").child("data").child(weaponKey).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
-                        Monster monster = dataSnapshot.getValue(Monster.class);
+                        Weapon weapon = dataSnapshot.getValue(Weapon.class);
 
-                        monsterName.setText(monster.name);
-                        monsterDesc.setText(monster.desc);
-                        Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(monsterImage);
+                        weaponName.setText(weapon.name);
+                        weaponDesc.setText(weapon.desc);
+                        Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponImage);
+                        Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponFlow);
                     }
 
                     @Override
