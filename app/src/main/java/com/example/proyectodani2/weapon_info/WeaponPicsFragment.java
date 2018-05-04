@@ -11,8 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.weapon_list.WeaponViewModel;
@@ -21,9 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class WeaponPicsFragment extends Fragment {
-    //XML
-    ImageView imageWeapon;
-    LinearLayout linearLayout;
     RecyclerView recyclerView;
     WeaponPicsAdapter weaponPicsAdapter;
     //Conectar a la base de datos
@@ -51,7 +46,6 @@ public class WeaponPicsFragment extends Fragment {
             }
         });
         return view;
-
     }
 
     void loadWeaponPics(final String weaponKey) {

@@ -22,22 +22,20 @@ import com.example.proyectodani2.R;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_info.MonsterInfoPagerFragment;
 import com.example.proyectodani2.monster_list.MonsterFragment;
-import com.example.proyectodani2.monster_list.MonsterListPagerFragment;
 import com.example.proyectodani2.others_things.SettingsActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment;
 import com.example.proyectodani2.weapon_list.WeaponAllFragment;
 
 
-public class MainActivity extends AppCompatActivity
+public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MonsterFragment.MonsterClickedListener, WeaponAllFragment.WeaponClickedListener {
 
+    Fragment fragment;
     // Popup
     private LayoutInflater layoutInflater;
     private View popupView;
     private PopupWindow popupWindow;
-
-    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +44,8 @@ public class MainActivity extends AppCompatActivity
 
         AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
         appBarLayout.setElevation(0);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -81,22 +78,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_monsters) {
-            //startActivity(new Intent(this, MonstersActivity.class));
-            fragmentClass = MonsterListPagerFragment.class;
+            startActivity(new Intent(this, MonstersActivity.class));
+            //fragmentClass = MonsterListPagerFragment.class;
         } else if (id == R.id.nav_weapons) {
             fragmentClass = WeaponAllFragment.class;
         } else if (id == R.id.nav_games) {
-            Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
+            Toast.makeText(DrawerActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_music) {
-            Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
-        }else if (id == R.id.nav_help) {
+            Toast.makeText(DrawerActivity.this, "WIP!", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.nav_help) {
             abrirPopUp();
-        }else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             finish();
         }
 
-        if(fragmentClass != null) {
+        if (fragmentClass != null) {
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
             } catch (Exception e) {
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public TabLayout getTabLayout(){
+    public TabLayout getTabLayout() {
         return findViewById(R.id.tabLayout);
     }
 
@@ -120,13 +117,14 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MonsterInfoPagerFragment()).commit();
     }
+
     @Override
     public void onWeaponOptionClicked(Weapon weapon) {
         getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new WeaponInfoPagerFragment()).commit();
     }
 
-    void abrirPopUp(){
-        layoutInflater =(LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+    void abrirPopUp() {
+        layoutInflater = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = layoutInflater.inflate(R.layout.popup, null);
         popupWindow = new PopupWindow(popupView, RadioGroup.LayoutParams.WRAP_CONTENT,
                 RadioGroup.LayoutParams.WRAP_CONTENT);

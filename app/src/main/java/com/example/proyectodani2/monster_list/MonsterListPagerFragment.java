@@ -43,6 +43,7 @@ public class MonsterListPagerFragment extends Fragment {
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+
         mViewPager = view.findViewById(R.id.MonsterListPagerContainer);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -91,4 +92,5 @@ public class MonsterListPagerFragment extends Fragment {
             return 2;
         }
     }
+
 }
