@@ -1,26 +1,49 @@
 package com.example.proyectodani2.weapon_info;
 
 
+import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.weapon_list.WeaponViewModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import static com.example.proyectodani2.monster_info.MonsterPicsFragment.PICK_IMAGE;
 
 public class WeaponPicsFragment extends Fragment {
     RecyclerView recyclerView;
     WeaponPicsAdapter weaponPicsAdapter;
+    FloatingActionButton fab;
+    ImageView imageView;
+    ProgressDialog pd;
+    public static final int PICK_IMAGE = 1;
+    public String theWeaponKey;
+    Uri filePath;
+
     //Conectar a la base de datos
     private DatabaseReference mReference = null;
 
@@ -38,10 +61,22 @@ public class WeaponPicsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        pd = new ProgressDialog(getContext());
+        pd.setMessage("Uploading....");
+        fab = view.findViewById(R.id.fab);
+        imageView=view.findViewById(R.id.imageView);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseImage();
+            }
+        });
+
         WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
         weaponViewModel.getWeaponKey().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String weaponKey) {
+                theWeaponKey=weaponKey;
                 loadWeaponPics(weaponKey);
             }
         });
@@ -100,4 +135,75 @@ public class WeaponPicsFragment extends Fragment {
                     }
                 });
     }*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == PICK_IMAGE) {
+            //TODO: action
+            filePath = data.getData();
+
+            try {
+                //getting image from gallery
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), filePath);
+
+                //Setting image to ImageView
+                imageView.setImageBitmap(bitmap);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                uploadImage();
+            }
+        }
+    }
+
+    void chooseImage(){
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/*");
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        //chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+        startActivityForResult(chooserIntent, PICK_IMAGE);
+    }
+
+    void uploadImage(){
+        if(filePath != null) {
+            pd.show();
+            StorageReference mStorageRef;
+
+            mStorageRef = FirebaseStorage.getInstance().getReference();
+
+            int random = (int)(Math.random() * 99999) + 1;
+            StorageReference childRef = mStorageRef.child("Weapons/UploadPics/"+theWeaponKey+"/" + "_"+random);
+
+            //uploading the image
+            UploadTask uploadTask = childRef.putFile(filePath);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    pd.dismiss();
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    String imageURL =  downloadUrl.toString();
+                    int random = (int)(Math.random() * 99999) + 1;
+                    FirebaseDatabase.getInstance().getReference().child("weapons/data").child(theWeaponKey).child("weaponPics").child("url"+random).setValue(imageURL);
+                    Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(getContext(), "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else {
+            Toast.makeText(getContext(), "Select an image", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

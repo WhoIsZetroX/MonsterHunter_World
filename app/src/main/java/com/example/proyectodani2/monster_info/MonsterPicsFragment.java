@@ -166,11 +166,6 @@ public class MonsterPicsFragment extends Fragment {
         }
     }
 
-    void chooseAndUploadImage(){
-        chooseImage();
-        uploadImage();
-    }
-
     void chooseImage(){
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getIntent.setType("image/*");
