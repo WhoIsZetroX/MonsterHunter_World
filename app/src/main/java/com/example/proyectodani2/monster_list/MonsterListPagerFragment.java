@@ -1,6 +1,7 @@
 package com.example.proyectodani2.monster_list;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -41,6 +42,9 @@ public class MonsterListPagerFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Favorites"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        tabLayout.setLayoutParams(layoutParams);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 

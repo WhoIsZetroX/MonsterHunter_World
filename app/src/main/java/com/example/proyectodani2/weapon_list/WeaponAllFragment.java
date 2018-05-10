@@ -4,6 +4,7 @@ package com.example.proyectodani2.weapon_list;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,8 +48,11 @@ public class WeaponAllFragment extends Fragment {
 
         TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
         tabLayout.removeAllTabs();
-        tabLayout.addTab(tabLayout.newTab().setText("All weapons"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+        layoutParams.height = 1;
+        tabLayout.setLayoutParams(layoutParams);
 
         recyclerView = view.findViewById(R.id.recycler);
         pbar = view.findViewById(R.id.progress_bar);

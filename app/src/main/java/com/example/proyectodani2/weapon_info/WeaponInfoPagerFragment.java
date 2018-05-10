@@ -2,6 +2,7 @@ package com.example.proyectodani2.weapon_info;
 
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -45,6 +46,11 @@ public class WeaponInfoPagerFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Pics"));
         tabLayout.addTab(tabLayout.newTab().setText("Videos"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        tabLayout.setLayoutParams(layoutParams);
+
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

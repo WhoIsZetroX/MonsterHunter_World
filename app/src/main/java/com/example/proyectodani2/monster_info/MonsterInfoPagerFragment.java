@@ -1,6 +1,8 @@
 package com.example.proyectodani2.monster_info;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.start_menu.MainActivity;
@@ -41,6 +44,10 @@ public class MonsterInfoPagerFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Videos"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        tabLayout.setLayoutParams(layoutParams);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

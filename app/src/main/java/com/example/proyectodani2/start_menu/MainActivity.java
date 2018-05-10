@@ -3,6 +3,7 @@ package com.example.proyectodani2.start_menu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.proyectodani2.R;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
         appBarLayout.setElevation(0);
         Toolbar toolbar =  findViewById(R.id.toolbar);
+        TabLayout tabLayout =  findViewById(R.id.tabLayout);
         setSupportActionBar(toolbar);
 
 
@@ -56,6 +59,10 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) tabLayout.getLayoutParams();
+        layoutParams.height = 1;
+        tabLayout.setLayoutParams(layoutParams);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
