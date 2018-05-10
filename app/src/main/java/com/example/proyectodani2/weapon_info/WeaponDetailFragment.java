@@ -76,7 +76,7 @@ public class WeaponDetailFragment extends Fragment {
                         weaponName.setText(weapon.name);
                         weaponDesc.setText(weapon.desc);
                         Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponImage);
-                        Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponFlow);
+                        Glide.with(WeaponDetailFragment.this).load(weapon.flow).into(weaponFlow);
                     }
 
                     @Override

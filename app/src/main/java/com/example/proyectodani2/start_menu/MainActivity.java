@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MainFragment()).addToBackStack("monster").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MainFragment()).commit();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.flContent, fragment).addToBackStack("monster").commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContent, fragment).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

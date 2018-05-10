@@ -11,17 +11,19 @@ public class Weapon {
     public String desc;
     public String picUrl;
     public String mDetailPic;
+    public String flow;
     //int imageUrl;
 
     public Weapon() {
 
     }
 
-    public Weapon(String name, String desc, String picUrl, String mDetailPic) {
+    public Weapon(String name, String desc, String picUrl, String mDetailPic, String flow) {
         this.name = name;
         this.desc = desc;
         this.picUrl = picUrl;
         this.mDetailPic = mDetailPic;
+        this.flow = flow;
     }
 
     public String getName() {
@@ -49,6 +51,14 @@ public class Weapon {
     public String getmDetailPic() {
 
         return mDetailPic;
+    }
+
+    public String getFlow() {
+        return flow;
+    }
+
+    public void setFlow(String flow) {
+        this.flow = flow;
     }
 
     public void setmDetailPic(String mDetailPic) {
