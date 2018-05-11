@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="MHW WIKIA"
@@ -18,7 +17,7 @@
         <activity
             android:name=".start_menu.MainActivity"
             android:label="MHW WIKIA"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".others_things.SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +27,12 @@
         </activity>
         <activity
             android:name=".others_things.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".photo_view.PhotoviewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_photoview"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

@@ -89,4 +89,8 @@
     <string name="seek_to">Jump To</string>
     <string name="seek_to_hint">Seconds</string>
 
+    <string name="title_activity_photoview">photoviewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

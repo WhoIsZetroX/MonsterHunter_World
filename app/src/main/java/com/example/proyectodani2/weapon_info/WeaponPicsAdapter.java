@@ -1,12 +1,15 @@
 package com.example.proyectodani2.weapon_info;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.photo_view.PhotoviewActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -24,10 +27,19 @@ public class WeaponPicsAdapter extends FirebaseRecyclerAdapter<String, WeaponIma
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull WeaponImagesViewHolder holder, int position, @NonNull String model) {
+    protected void onBindViewHolder(@NonNull WeaponImagesViewHolder holder, int position, @NonNull final String model) {
         Glide.with(context)
                 .load(model)
                 .into(holder.ivContent);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PhotoviewActivity.class);
+                intent.putExtra("photourl", model);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
