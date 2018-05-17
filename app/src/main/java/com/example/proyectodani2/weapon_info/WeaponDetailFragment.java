@@ -2,6 +2,7 @@ package com.example.proyectodani2.weapon_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.photo_view.PhotoviewActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon_list.WeaponViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +49,7 @@ public class WeaponDetailFragment extends Fragment {
         weaponImage = view.findViewById(R.id.weaponImage);
         weaponFlow = view.findViewById(R.id.weaponFlow);
 
+
         //String monsterKey="-L5PJ79zN1mmghpBW2KV";
         WeaponViewModel weaponViewModel = ViewModelProviders.of(getActivity()).get(WeaponViewModel.class);
         weaponViewModel.getWeaponKey().observe(this, new Observer<String>() {
@@ -71,12 +74,30 @@ public class WeaponDetailFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
-                        Weapon weapon = dataSnapshot.getValue(Weapon.class);
+                        final Weapon weapon = dataSnapshot.getValue(Weapon.class);
 
                         weaponName.setText(weapon.name);
                         weaponDesc.setText(weapon.desc);
                         Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponImage);
                         Glide.with(WeaponDetailFragment.this).load(weapon.flow).into(weaponFlow);
+
+                        weaponImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getContext(), PhotoviewActivity.class);
+                                intent.putExtra("photourl", weapon.getmDetailPic());
+                                getContext().startActivity(intent);
+                            }
+                        });
+                        weaponFlow.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getContext(), PhotoviewActivity.class);
+                                intent.putExtra("photourl", weapon.getFlow());
+                                getContext().startActivity(intent);
+                            }
+                        });
+
                     }
 
                     @Override

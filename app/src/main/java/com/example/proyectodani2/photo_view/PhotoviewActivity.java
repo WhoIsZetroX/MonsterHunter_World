@@ -72,10 +72,10 @@ public class PhotoviewActivity extends AppCompatActivity {
         @Override
         public void run() {
             // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
+//            ActionBar actionBar = getSupportActionBar();
+//            if (actionBar != null) {
+//                actionBar.show();
+//            }
             mControlsView.setVisibility(View.VISIBLE);
         }
     };
@@ -95,7 +95,7 @@ public class PhotoviewActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.photoview);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -109,7 +109,13 @@ public class PhotoviewActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.back_button).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                finish();
+                return false;
+            }
+        });
 
         String photourl = getIntent().getStringExtra("photourl");
 

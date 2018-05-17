@@ -2,6 +2,7 @@ package com.example.proyectodani2.monster_info;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_list.MonsterViewModel;
+import com.example.proyectodani2.photo_view.PhotoviewActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,7 +56,6 @@ public class MonsterDetailsFragment extends Fragment {
                 showMonsterKey(monsterKey);
             }
         });
-
         //showMonsterKey(monsterKey);
 
         return view;
@@ -70,11 +71,21 @@ public class MonsterDetailsFragment extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
-                        Monster monster = dataSnapshot.getValue(Monster.class);
+                        final Monster monster = dataSnapshot.getValue(Monster.class);
 
                         monsterName.setText(monster.name);
                         monsterDesc.setText(monster.desc);
                         Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(monsterImage);
+
+                        monsterImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getContext(), PhotoviewActivity.class);
+                                intent.putExtra("photourl", monster.getmDetailPic());
+                                getContext().startActivity(intent);
+                            }
+                        });
+
                     }
 
                     @Override

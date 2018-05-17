@@ -16,16 +16,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/side_nav_bar"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            app:tabIndicatorColor="#FFFFFF"
-            app:tabSelectedTextColor="#FF0000"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/side_nav_bar"
+            app:tabIndicatorColor="#98ff83"
+            app:tabSelectedTextColor="#98ff83"
             android:layout_alignParentTop="true"/>
 
     </android.support.design.widget.AppBarLayout>

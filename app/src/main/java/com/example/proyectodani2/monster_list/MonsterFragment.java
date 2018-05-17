@@ -174,6 +174,7 @@ public abstract class MonsterFragment extends Fragment {
                         new View.OnClickListener(){
                             @Override
                             public void onClick(View view) {
+
                                 MonsterViewModel MonsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
                                 MonsterViewModel.getMonsterKey().setValue(monsterKey);
                                 monsterClickedListener.onMonsterOptionClicked(monster);

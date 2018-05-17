@@ -69,7 +69,6 @@ public class MonsterListPagerFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -96,5 +95,4 @@ public class MonsterListPagerFragment extends Fragment {
             return 2;
         }
     }
-
 }
