@@ -25,6 +25,7 @@ import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_info.MonsterInfoPagerFragment;
 import com.example.proyectodani2.monster_list.MonsterFragment;
 import com.example.proyectodani2.monster_list.MonsterListPagerFragment;
+import com.example.proyectodani2.music_list.MusicAllFragment;
 import com.example.proyectodani2.others_things.SettingsActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment;
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_games) {
             Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_music) {
-            Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
+            fragmentClass = MusicAllFragment.class;
         }else if (id == R.id.nav_help) {
             abrirPopUp();
         }else if (id == R.id.nav_settings) {
