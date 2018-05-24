@@ -1,5 +1,6 @@
 package com.example.proyectodani2.lala;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.others_things.SigninActivity;
+import com.example.proyectodani2.start_menu.MainActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -120,7 +123,7 @@ public class ChatActivity extends AppCompatActivity {
                 System.out.println("LALALA  " +music.text + " - " + music.user );
 
                 String user = FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0];
-                String cap = user.substring(0, 1);
+                String cap = music.user.substring(0, 1);
                 System.out.println("OOOH"+cap);
                 viewHolder.tvContent.setTextColor(Color.parseColor(setUserColor(cap)));
                 viewHolder.tvContent.setText(music.user);
@@ -240,6 +243,13 @@ public class ChatActivity extends AppCompatActivity {
                     color="#000000";
         }
         return color;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ChatActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
