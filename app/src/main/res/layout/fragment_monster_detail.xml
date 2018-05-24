@@ -28,9 +28,12 @@
                 android:layout_weight="10"
                 android:text="Loading..."
                 android:textAlignment="center"
+                android:textSize="20sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <TextView
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
                 android:id="@+id/monsterDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
