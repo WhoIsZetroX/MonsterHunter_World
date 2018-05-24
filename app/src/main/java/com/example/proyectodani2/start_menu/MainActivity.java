@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_games) {
             startActivity(new Intent(this, ChatActivity.class));
             finish();
-            Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_music) {
             fragmentClass = MusicAllFragment.class;
         }else if (id == R.id.nav_help) {

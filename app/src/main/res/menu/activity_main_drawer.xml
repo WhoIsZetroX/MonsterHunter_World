@@ -14,13 +14,13 @@
             android:icon="@drawable/weaponicon"
             android:title="Weapons" />
         <item
-            android:id="@+id/nav_games"
-            android:icon="@drawable/gamesicon"
-            android:title="Games" />
-        <item
             android:id="@+id/nav_music"
             android:icon="@drawable/musicicon"
             android:title="Music" />
+        <item
+            android:id="@+id/nav_games"
+            android:icon="@drawable/gamesicon"
+            android:title="Chat" />
 
     </group>
 
@@ -36,7 +36,7 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settingicon"
-            android:title="Settings" />
+            android:title="Sign out" />
 
     </group>
 </menu>
