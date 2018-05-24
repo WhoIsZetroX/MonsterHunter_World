@@ -2,6 +2,7 @@ package com.example.proyectodani2.start_menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -27,10 +28,14 @@ import com.example.proyectodani2.monster_list.MonsterFragment;
 import com.example.proyectodani2.monster_list.MonsterListPagerFragment;
 import com.example.proyectodani2.music_list.MusicAllFragment;
 import com.example.proyectodani2.others_things.SettingsActivity;
+import com.example.proyectodani2.others_things.SigninActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment;
 import com.example.proyectodani2.weapon_list.WeaponAllFragment;
-
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MonsterFragment.MonsterClickedListener, WeaponAllFragment.WeaponClickedListener {
@@ -100,14 +105,22 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_weapons) {
             fragmentClass = WeaponAllFragment.class;
         } else if (id == R.id.nav_games) {
+            startActivity(new Intent(this, ChatActivity.class));
+            finish();
             Toast.makeText(MainActivity.this, "WIP!", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_music) {
             fragmentClass = MusicAllFragment.class;
         }else if (id == R.id.nav_help) {
             abrirPopUp();
         }else if (id == R.id.nav_settings) {
-            startActivity(new Intent(this, ChatActivity.class));
-            finish();
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        public void onComplete(@NonNull Task<Void> task) {
+                            startActivity(new Intent(MainActivity.this, SigninActivity.class));
+                            finish();
+                        }
+                    });
         }
 
         if(fragmentClass != null) {
