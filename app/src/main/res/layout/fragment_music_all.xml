@@ -5,9 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".music_list.MusicAllFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_music"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_weight="9"
+            android:id="@+id/recyclerview_music"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <VideoView
+            android:id="@+id/mVideoView"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
 
 </FrameLayout>

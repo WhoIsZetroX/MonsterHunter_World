@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
@@ -41,6 +43,8 @@ public class MusicAllFragment extends Fragment {
     TextView monsterName, monsterDesc;
     ImageView monsterImage;
     MediaPlayer mp;// = new MediaPlayer();
+    MediaController mc;
+    VideoView mVideoView;
 
     //Conectar a la base de datos
     private DatabaseReference mDatabase = null;
@@ -66,8 +70,19 @@ public class MusicAllFragment extends Fragment {
 
         mReference = FirebaseDatabase.getInstance().getReference();
 
+        mVideoView = view.findViewById(R.id.mVideoView);
+
+        //MediaController mc = new MediaController(getActivity());//getContext());
+        mc = new MediaController(getContext());
+        mc.show(50000);
+        mc.setAnchorView(mVideoView);
+        mVideoView.setMediaController(mc);
+
         recyclerView = view.findViewById(R.id.recyclerview_music);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mVideoView.setVideoPath("https://firebasestorage.googleapis.com/v0/b/monsterhunter-f591a.appspot.com/o/music%2FMonster%20Hunter%20World%20OST%20-%20Proof%20of%20a%20Hero.mp3?alt=media&token=e8987de5-c855-4b7e-843e-01b3ce955f2a");
+        mVideoView.pause();
 
         loadMonsterPics();
 
@@ -107,8 +122,19 @@ public class MusicAllFragment extends Fragment {
                             new View.OnClickListener(){
                                 @Override
                                 public void onClick(View view) {
+                                    //mc.hide();
 
-                                    try {
+                                    if (mVideoView.isPlaying()) mVideoView.pause();
+                                    mVideoView.setVideoPath(music.songUrl);
+                                    mVideoView.start();
+                                    mc.show(900000000);
+
+                                    //mVideoView.setVideoPath(music.songUrl);
+                                    //mVideoView.start();
+                                    //mc.show(50000);
+
+
+                                  /*  try {
                                         if(mp!=null)
                                         {
                                             mp.release();
@@ -116,12 +142,12 @@ public class MusicAllFragment extends Fragment {
                                         }
                                         mp = new MediaPlayer();
                                         mp.setDataSource(music.songUrl);
-/*
+*//*
 
                                         if (mp.isPlaying()) mp.stop();
 
                                         mp.start();
-*/
+*//*
 
                                         mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                                             @Override
@@ -134,7 +160,7 @@ public class MusicAllFragment extends Fragment {
                                             }
                                         });
                                         mp.prepare();
-                                    }catch (Exception e){ e.printStackTrace(); }
+                                    }catch (Exception e){ e.printStackTrace(); }*/
                                     System.out.println( " LALALA esto es imposibleS");
                                    // MediaController mc = new MediaController(getContext());
                                     /*mc.setAnchorView(viewHolder.vvContent);
@@ -165,6 +191,8 @@ public class MusicAllFragment extends Fragment {
             monsterMusicAdapter.startListening();*/
         }
 
-
+    public MediaController getMc() {
+        return mc;
     }
+}
 
