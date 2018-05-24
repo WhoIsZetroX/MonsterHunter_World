@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.proyectodani2.R;
+import com.example.proyectodani2.lala.ChatActivity;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_info.MonsterInfoPagerFragment;
 import com.example.proyectodani2.monster_list.MonsterFragment;
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_help) {
             abrirPopUp();
         }else if (id == R.id.nav_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, ChatActivity.class));
             finish();
         }
 
