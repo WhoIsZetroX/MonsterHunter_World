@@ -74,15 +74,16 @@ public class MusicAllFragment extends Fragment {
 
         //MediaController mc = new MediaController(getActivity());//getContext());
         mc = new MediaController(getContext());
-        mc.show(50000);
+
+        //mc.show(50000);
         mc.setAnchorView(mVideoView);
         mVideoView.setMediaController(mc);
 
         recyclerView = view.findViewById(R.id.recyclerview_music);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mVideoView.setVideoPath("https://firebasestorage.googleapis.com/v0/b/monsterhunter-f591a.appspot.com/o/music%2FMonster%20Hunter%20World%20OST%20-%20Proof%20of%20a%20Hero.mp3?alt=media&token=e8987de5-c855-4b7e-843e-01b3ce955f2a");
-        mVideoView.pause();
+       // mVideoView.setVideoPath("https://firebasestorage.googleapis.com/v0/b/monsterhunter-f591a.appspot.com/o/music%2FMonster%20Hunter%20World%20OST%20-%20Proof%20of%20a%20Hero.mp3?alt=media&token=e8987de5-c855-4b7e-843e-01b3ce955f2a");
+        //mVideoView.pause();
 
         loadMonsterPics();
 
@@ -124,10 +125,11 @@ public class MusicAllFragment extends Fragment {
                                 public void onClick(View view) {
                                     //mc.hide();
 
-                                    if (mVideoView.isPlaying()) mVideoView.pause();
+                                    //if (mVideoView.isPlaying()) mVideoView.pause();
                                     mVideoView.setVideoPath(music.songUrl);
                                     mVideoView.start();
-                                    mc.show(900000000);
+                                    //mc.hide();
+
 
                                     //mVideoView.setVideoPath(music.songUrl);
                                     //mVideoView.start();
