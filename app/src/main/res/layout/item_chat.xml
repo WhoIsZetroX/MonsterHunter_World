@@ -10,13 +10,14 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
+            android:gravity="left"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/text_"
-                android:textColor="#ff0000"
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
