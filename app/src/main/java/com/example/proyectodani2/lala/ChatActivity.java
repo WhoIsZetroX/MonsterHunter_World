@@ -2,18 +2,25 @@ package com.example.proyectodani2.lala;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.media.MediaPlayer;
+import android.support.constraint.Constraints;
+import android.support.design.widget.FloatingActionButton;
+import android.support.transition.Slide;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.proyectodani2.R;
@@ -41,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
     ImageView monsterImage;
     MediaPlayer mp;// = new MediaPlayer();
     EditText editText;
-    Button button;
+    FloatingActionButton button;
     String key="1";
 
     @Override
@@ -64,15 +71,9 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     transaction();
-                }finally {
-                    String lala = String.valueOf(editText.getText());
-                    String user = FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0];
-                    Chat chat = new Chat(lala, user + "", key+"");
-                    System.out.println("HAHAHA " + key + "\n" +
-                            FirebaseAuth.getInstance().getCurrentUser() + "\n" +
-                            FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0]);
-                    mReference.child("chat").child("-" + key).setValue(chat);//FirebaseAuth.getInstance().getCurrentUser());
-                    //mReference.child("chat").child(key).child("text").setValue(lala);
+                }catch (Exception e){
+                    e.printStackTrace();
+
                 }
             }
         });
@@ -98,14 +99,24 @@ public class ChatActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {}
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                String mensaje = String.valueOf(editText.getText());
+                String user = FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0];
+                Chat chat = new Chat(mensaje, user + "", dataSnapshot.getValue()+"");
+                System.out.println("HAHAHA " + dataSnapshot.getValue() + " - " + key +"\n" +
+                        FirebaseAuth.getInstance().getCurrentUser() + "\n" +
+                        FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0]);
+                mReference.child("chat").child("-" + dataSnapshot.getValue()).setValue(chat);//FirebaseAuth.getInstance().getCurrentUser());
+                //mReference.child("chat").child(key).child("text").setValue(lala);
+                editText.setText("");
+            }
         });
     }
 
     void loadChat() {
 
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Chat>()
-                .setQuery(mReference.child("chat").limitToFirst(10), Chat.class)
+                .setQuery(mReference.child("chat").limitToFirst(50), Chat.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -125,10 +136,28 @@ public class ChatActivity extends AppCompatActivity {
                 String user = FirebaseAuth.getInstance().getCurrentUser().getEmail().split("@")[0];
                 String cap = music.user.substring(0, 1);
                 System.out.println("OOOH"+cap);
-                viewHolder.tvContent.setTextColor(Color.parseColor(setUserColor(cap)));
-                viewHolder.tvContent.setText(music.user);
-                viewHolder.tvContent2.setText(music.text);
+                if (user.equals(music.user)) {
+                    viewHolder.linearLayout.setGravity(Gravity.END);
 
+                    viewHolder.tvContent.setText(music.text);
+                    viewHolder.tvContent.setPadding(0,0,0,0);
+                    viewHolder.tvContent.setTextColor(Color.parseColor("#000000"));
+
+                    viewHolder.tvContent2.setTextColor(Color.parseColor(setUserColor(cap)));
+                    viewHolder.tvContent2.setText(music.user);
+                    viewHolder.tvContent2.setPadding(20,0,0,0);
+
+                }else{
+                    viewHolder.linearLayout.setGravity(Gravity.START);
+
+                    viewHolder.tvContent.setTextColor(Color.parseColor(setUserColor(cap)));
+                    viewHolder.tvContent.setText(music.user);
+                    viewHolder.tvContent.setPadding(0,0,20,0);
+
+                    viewHolder.tvContent2.setPadding(0,0,0,0);
+                    viewHolder.tvContent2.setTextColor(Color.parseColor("#000000"));
+                    viewHolder.tvContent2.setText(music.text);
+                }
                 viewHolder.itemView.setOnClickListener(
                         new View.OnClickListener(){
                             @Override

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ public class MonsterDetailsFragment extends Fragment {
 
     //XML
     TextView monsterName, monsterDesc;
-    ImageView monsterImage;
+    ImageView monsterImage, monsterWeakness;
     //Conectar a la base de datos
     private DatabaseReference mDatabase = null;
 
@@ -47,6 +48,7 @@ public class MonsterDetailsFragment extends Fragment {
         monsterName = view.findViewById(R.id.monsterName);
         monsterDesc = view.findViewById(R.id.monsterDesc);
         monsterImage = view.findViewById(R.id.monsterImage);
+        monsterWeakness = view.findViewById(R.id.monsterWeakness);
 
         //String monsterKey="-L5PJ79zN1mmghpBW2KV";
         MonsterViewModel monsterViewModel = ViewModelProviders.of(getActivity()).get(MonsterViewModel.class);
@@ -76,12 +78,22 @@ public class MonsterDetailsFragment extends Fragment {
                         monsterName.setText(monster.name);
                         monsterDesc.setText(monster.desc);
                         Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(monsterImage);
+                        Glide.with(MonsterDetailsFragment.this).load(monster.weakness).into(monsterWeakness);
 
                         monsterImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getContext(), PhotoviewActivity.class);
                                 intent.putExtra("photourl", monster.getmDetailPic());
+                                getContext().startActivity(intent);
+                            }
+                        });
+
+                        monsterWeakness.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getContext(), PhotoviewActivity.class);
+                                intent.putExtra("photourl", monster.getWeakness());
                                 getContext().startActivity(intent);
                             }
                         });

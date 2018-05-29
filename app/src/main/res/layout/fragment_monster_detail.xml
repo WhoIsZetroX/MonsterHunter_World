@@ -31,6 +31,14 @@
                 android:textSize="20sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
+            <ImageView
+                android:id="@+id/monsterWeakness"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_weight="50"
+                android:scaleType="centerCrop"
+                android:tooltipText="Loading..." />
+
             <TextView
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"

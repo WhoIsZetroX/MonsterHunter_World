@@ -43,7 +43,7 @@ public class MusicAllFragment extends Fragment {
     TextView monsterName, monsterDesc;
     ImageView monsterImage;
     MediaPlayer mp;// = new MediaPlayer();
-    MediaController mc;
+    MediaController mc; //= new MediaController(getActivity());
     VideoView mVideoView;
 
     //Conectar a la base de datos
@@ -60,6 +60,9 @@ public class MusicAllFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music_all, container, false);
 
+        mc = new MediaController(getActivity());//getContext());
+        mVideoView = view.findViewById(R.id.mVideoView);
+
         TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
         tabLayout.removeAllTabs();
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -70,19 +73,13 @@ public class MusicAllFragment extends Fragment {
 
         mReference = FirebaseDatabase.getInstance().getReference();
 
-        mVideoView = view.findViewById(R.id.mVideoView);
 
-        //MediaController mc = new MediaController(getActivity());//getContext());
-        mc = new MediaController(getContext());
-        mc.show(50000);
+
         mc.setAnchorView(mVideoView);
         mVideoView.setMediaController(mc);
 
         recyclerView = view.findViewById(R.id.recyclerview_music);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        mVideoView.setVideoPath("https://firebasestorage.googleapis.com/v0/b/monsterhunter-f591a.appspot.com/o/music%2FMonster%20Hunter%20World%20OST%20-%20Proof%20of%20a%20Hero.mp3?alt=media&token=e8987de5-c855-4b7e-843e-01b3ce955f2a");
-        mVideoView.pause();
 
         loadMonsterPics();
 
@@ -122,46 +119,16 @@ public class MusicAllFragment extends Fragment {
                             new View.OnClickListener(){
                                 @Override
                                 public void onClick(View view) {
-                                    //mc.hide();
 
-                                    if (mVideoView.isPlaying()) mVideoView.pause();
+                                   /* mVideoView.setVideoPath(music.songUrl);
+                                    mVideoView.start();*/
+
                                     mVideoView.setVideoPath(music.songUrl);
                                     mVideoView.start();
-                                    mc.show(900000000);
+//                                    mc.show(50000);
 
-                                    //mVideoView.setVideoPath(music.songUrl);
-                                    //mVideoView.start();
-                                    //mc.show(50000);
+                                    System.out.println( " LALALA esto es imposibleS: " + music.songUrl);
 
-
-                                  /*  try {
-                                        if(mp!=null)
-                                        {
-                                            mp.release();
-                                            mp=null;
-                                        }
-                                        mp = new MediaPlayer();
-                                        mp.setDataSource(music.songUrl);
-*//*
-
-                                        if (mp.isPlaying()) mp.stop();
-
-                                        mp.start();
-*//*
-
-                                        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                            @Override
-                                            public void onPrepared(MediaPlayer mediaPlayer) {
-                                                if (mediaPlayer.isPlaying()){
-                                                    mediaPlayer.stop();
-                                                }
-                                                mediaPlayer.start();
-
-                                            }
-                                        });
-                                        mp.prepare();
-                                    }catch (Exception e){ e.printStackTrace(); }*/
-                                    System.out.println( " LALALA esto es imposibleS");
                                    // MediaController mc = new MediaController(getContext());
                                     /*mc.setAnchorView(viewHolder.vvContent);
                                     viewHolder.vvContent.setMediaController(mc);
@@ -176,23 +143,11 @@ public class MusicAllFragment extends Fragment {
 
             recyclerView.setAdapter(adapter);
 
-
-
-            /*mReference = FirebaseDatabase.getInstance().getReference();
-
-            FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<String>()
-                    .setQuery(mReference.child("music"), String.class)
-                    .setLifecycleOwner(this)
-                    .build();
-
-            monsterMusicAdapter = new MonsterMusicAdapter(getActivity(), options);
-            recyclerView.setAdapter(monsterMusicAdapter);
-
-            monsterMusicAdapter.startListening();*/
         }
 
-    public MediaController getMc() {
+
+    /*public MediaController getMc() {
         return mc;
-    }
+    }*/
 }
 

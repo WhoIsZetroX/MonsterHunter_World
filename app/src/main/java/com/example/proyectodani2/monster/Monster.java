@@ -15,6 +15,7 @@ public class Monster {
     public String picUrl;
     public HashMap<String, String> monsterPics;
     public String mDetailPic;
+    public String weakness;
     //int imageUrl;
 
 
@@ -23,12 +24,21 @@ public class Monster {
 
     }
 
-    public Monster(String name, String desc, String picUrl, HashMap<String, String> monsterPics, String mDetailPic) {
+    public Monster(String name, String desc, String picUrl, HashMap<String, String> monsterPics, String mDetailPic, String weakness) {
         this.name = name;
         this.desc = desc;
         this.picUrl = picUrl;
         this.monsterPics = monsterPics;
         this.mDetailPic = mDetailPic;
+        this.weakness = weakness;
+    }
+
+    public String getWeakness() {
+        return weakness;
+    }
+
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
     }
 
     public String getName() {
