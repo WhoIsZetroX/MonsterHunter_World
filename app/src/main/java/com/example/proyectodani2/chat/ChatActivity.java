@@ -1,12 +1,9 @@
-package com.example.proyectodani2.lala;
+package com.example.proyectodani2.chat;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Path;
 import android.media.MediaPlayer;
-import android.support.constraint.Constraints;
 import android.support.design.widget.FloatingActionButton;
-import android.support.transition.Slide;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,16 +12,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.others_things.SigninActivity;
 import com.example.proyectodani2.start_menu.MainActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

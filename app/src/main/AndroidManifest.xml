@@ -33,7 +33,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_photoview"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".lala.ChatActivity"></activity>
+        <activity android:name=".chat.ChatActivity"></activity>
     </application>
 
 </manifest>

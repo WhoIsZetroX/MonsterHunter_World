@@ -1,4 +1,4 @@
-package com.example.proyectodani2.lala;
+package com.example.proyectodani2.chat;
 
 public class Chat {
     String text;
