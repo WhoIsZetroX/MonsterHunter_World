@@ -18,16 +18,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.proyectodani2.R;
-import com.example.proyectodani2.lala.ChatActivity;
+import com.example.proyectodani2.chat.ChatActivity;
 import com.example.proyectodani2.monster.Monster;
 import com.example.proyectodani2.monster_info.MonsterInfoPagerFragment;
 import com.example.proyectodani2.monster_list.MonsterFragment;
 import com.example.proyectodani2.monster_list.MonsterListPagerFragment;
 import com.example.proyectodani2.music_list.MusicAllFragment;
-import com.example.proyectodani2.others_things.SettingsActivity;
 import com.example.proyectodani2.others_things.SigninActivity;
 import com.example.proyectodani2.weapon.Weapon;
 import com.example.proyectodani2.weapon_info.WeaponInfoPagerFragment;
@@ -35,7 +33,6 @@ import com.example.proyectodani2.weapon_list.WeaponAllFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MonsterFragment.MonsterClickedListener, WeaponAllFragment.WeaponClickedListener {

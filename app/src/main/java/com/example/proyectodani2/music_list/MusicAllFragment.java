@@ -1,6 +1,7 @@
 package com.example.proyectodani2.music_list;
 
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,12 +39,7 @@ public class MusicAllFragment extends Fragment {
 
     RecyclerView recyclerView;
     DatabaseReference mReference;
-    ImageView imageMonster;
-    LinearLayout linearLayout;
-    TextView monsterName, monsterDesc;
-    ImageView monsterImage;
-    MediaPlayer mp;// = new MediaPlayer();
-    MediaController mc; //= new MediaController(getActivity());
+    public static MediaController mc; //= new MediaController(getActivity());
     VideoView mVideoView;
 
     //Conectar a la base de datos
@@ -53,15 +49,14 @@ public class MusicAllFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music_all, container, false);
 
-        mc = new MediaController(getActivity());//getContext());
         mVideoView = view.findViewById(R.id.mVideoView);
+        mc = new MediaController(getActivity());
 
         TabLayout tabLayout = ((MainActivity) getActivity()).getTabLayout();
         tabLayout.removeAllTabs();
@@ -72,8 +67,6 @@ public class MusicAllFragment extends Fragment {
         tabLayout.setLayoutParams(layoutParams);
 
         mReference = FirebaseDatabase.getInstance().getReference();
-
-
 
         mc.setAnchorView(mVideoView);
         mVideoView.setMediaController(mc);
@@ -88,66 +81,58 @@ public class MusicAllFragment extends Fragment {
 
     }
 
-        void loadMonsterPics() {
+    void loadMonsterPics() {
 
-            FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Music>()
-                    .setQuery(mReference.child("music/data"), Music.class)
-                    .setLifecycleOwner(this)
-                    .build();
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Music>()
+                .setQuery(mReference.child("music/data"), Music.class)
+                .setLifecycleOwner(this)
+                .build();
 
-            FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Music, MusicViewHolder>(options) {
-                @Override
-                public MusicViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                    LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                    return new MusicViewHolder(inflater.inflate(R.layout.item_monstermusic, viewGroup, false));
-                }
+        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Music, MusicViewHolder>(options) {
+            @Override
+            public MusicViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                return new MusicViewHolder(inflater.inflate(R.layout.item_monstermusic, viewGroup, false));
+            }
 
 
 
-                @Override
-                protected void onBindViewHolder(final MusicViewHolder viewHolder, final int position, final Music music) {
-                    System.out.println("LALALA  " +music.name + " - " + music.picUrl + " - MUSICA - "+ music.songUrl );
-                    final String musicName = music.name;
-                    String cap = musicName.substring(0, 1).toUpperCase() + musicName.substring(1);
-                    viewHolder.tvContent.setText(cap);
+            @Override
+            protected void onBindViewHolder(final MusicViewHolder viewHolder, final int position, final Music music) {
+                System.out.println("LALALA  " +music.name + " - " + music.picUrl + " - MUSICA - "+ music.songUrl );
+                final String musicName = music.name;
+                String cap = musicName.substring(0, 1).toUpperCase() + musicName.substring(1);
+                viewHolder.tvContent.setText(cap);
 
-                    Glide.with(MusicAllFragment.this)
-                            .load(music.picUrl)
-                            .into(viewHolder.ivContent);
+                Glide.with(MusicAllFragment.this)
+                        .load(music.picUrl)
+                        .into(viewHolder.ivContent);
 
-                    viewHolder.itemView.setOnClickListener(
-                            new View.OnClickListener(){
-                                @Override
-                                public void onClick(View view) {
+                viewHolder.itemView.setOnClickListener(
+                        new View.OnClickListener(){
+                            @Override
+                            public void onClick(View view) {
 
-                                   /* mVideoView.setVideoPath(music.songUrl);
-                                    mVideoView.start();*/
+                                mVideoView.setVideoPath(music.songUrl);
+                                mVideoView.start();
+                                System.out.println( " LALALA esto es imposibleS: " + music.songUrl);
 
-                                    mVideoView.setVideoPath(music.songUrl);
-                                    mVideoView.start();
-//                                    mc.show(50000);
+                            }
+                        });
+            }
 
-                                    System.out.println( " LALALA esto es imposibleS: " + music.songUrl);
+        };
 
-                                   // MediaController mc = new MediaController(getContext());
-                                    /*mc.setAnchorView(viewHolder.vvContent);
-                                    viewHolder.vvContent.setMediaController(mc);
-                                    viewHolder.vvContent.setVideoPath(music.songUrl);
-                                    viewHolder.vvContent.start();*/
+        recyclerView.setAdapter(adapter);
 
-                                }
-                            });
-                }
-
-            };
-
-            recyclerView.setAdapter(adapter);
-
-        }
+    }
 
 
     /*public MediaController getMc() {
         return mc;
     }*/
+
+
 }
+
 
