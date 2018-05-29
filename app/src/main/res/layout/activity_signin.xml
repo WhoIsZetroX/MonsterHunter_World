@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.proyectodani2.others_things.SigninActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
+        <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginBottom="272dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/drawericon"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/mhwlogo"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="351dp" />
+        android:layout_height="wrap_content"/>
 
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
