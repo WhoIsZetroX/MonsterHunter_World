@@ -47,6 +47,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="40"
                 android:text="Loading..." />
+
+            <ExpandableListView
+                android:id="@+id/expListView"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:layout_weight="0.14" >
+            </ExpandableListView>
+
         </LinearLayout>
     </ScrollView>
     </FrameLayout>
