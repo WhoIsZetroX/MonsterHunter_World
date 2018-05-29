@@ -127,7 +127,7 @@ public class MusicAllFragment extends Fragment {
                                     mVideoView.start();
 //                                    mc.show(50000);
 
-                                    System.out.println( " LALALA esto es imposibleS");
+                                    System.out.println( " LALALA esto es imposibleS: " + music.songUrl);
 
                                    // MediaController mc = new MediaController(getContext());
                                     /*mc.setAnchorView(viewHolder.vvContent);
