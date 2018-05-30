@@ -16,6 +16,9 @@ public class Monster {
     public HashMap<String, String> monsterPics;
     public String mDetailPic;
     public String weakness;
+    public String detLoc;
+    public String combatInfo;
+    public String weaknessInfo;
     //int imageUrl;
 
 
@@ -31,6 +34,30 @@ public class Monster {
         this.monsterPics = monsterPics;
         this.mDetailPic = mDetailPic;
         this.weakness = weakness;
+    }
+
+    public String getCombatInfo() {
+    return combatInfo;
+    }
+
+    public void setCombatInfo(String combatInfo) {
+        this.combatInfo = combatInfo;
+    }
+
+    public String getWeaknessInfo() {
+    return weaknessInfo;
+    }
+
+    public void setWeaknessInfo(String weaknessInfo) {
+        this.weaknessInfo = weaknessInfo;
+    }
+
+    public String getDetLoc() {
+        return detLoc;
+    }
+
+    public void setDetLoc(String detLoc) {
+        this.detLoc = detLoc;
     }
 
     public String getWeakness() {
