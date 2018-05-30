@@ -1,34 +1,24 @@
 package com.example.proyectodani2.music_list;
 
 
-import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.start_menu.MainActivity;
-import com.example.proyectodani2.weapon_list.WeaponAllFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -37,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class MusicAllFragment extends Fragment {
 
+    public ProgressBar pbar;
     RecyclerView recyclerView;
     DatabaseReference mReference;
     public static MediaController mc; //= new MediaController(getActivity());
@@ -54,6 +45,8 @@ public class MusicAllFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_music_all, container, false);
+
+        pbar = view.findViewById(R.id.progress_bar);
 
         mVideoView = view.findViewById(R.id.mVideoView);
         mc = new MediaController(getActivity());
@@ -121,8 +114,12 @@ public class MusicAllFragment extends Fragment {
                         });
             }
 
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                pbar.setVisibility(View.INVISIBLE);
+            }
         };
-
         recyclerView.setAdapter(adapter);
 
     }

@@ -25,4 +25,5 @@
         android:layout_marginRight="10dp"
         android:src="@android:drawable/ic_menu_upload"
         app:backgroundTint="@android:color/holo_green_dark" />
+
 </FrameLayout>

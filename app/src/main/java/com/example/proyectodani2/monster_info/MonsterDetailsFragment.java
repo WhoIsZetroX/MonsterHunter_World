@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,8 @@ public class MonsterDetailsFragment extends Fragment {
     View view;
     private int lastExpandedPosition = -1;
     Monster monster = null;
+    public ProgressBar pbar;
+
 
     public MonsterDetailsFragment() {
         // Required empty public constructor
@@ -54,7 +57,7 @@ public class MonsterDetailsFragment extends Fragment {
         groups = new String[] { "Details & Locations", "Combat Info", "Weaknesses"};
 
 
-
+        pbar = view.findViewById(R.id.progress_bar);
 
 
         monsterName = view.findViewById(R.id.monsterName);
@@ -86,7 +89,7 @@ public class MonsterDetailsFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         monster = dataSnapshot.getValue(Monster.class);
-
+                        pbar.setVisibility(View.INVISIBLE);
                         monsterName.setText(monster.name);
                         monsterDesc.setText(monster.desc);
                         Glide.with(MonsterDetailsFragment.this).load(monster.mDetailPic).into(monsterImage);
@@ -128,9 +131,9 @@ public class MonsterDetailsFragment extends Fragment {
     }
 
     void loadExpList(){
-        lv = (ExpandableListView) view.findViewById(R.id.expListView);
+
+        lv = view.findViewById(R.id.expListView);
         lv.setAdapter(new ExpandableListAdapter(groups, children));
-        lv.setGroupIndicator(null);
 
         lv.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
@@ -157,6 +160,7 @@ public class MonsterDetailsFragment extends Fragment {
                 };*/
 
         public ExpandableListAdapter(String[] groups, String[][] children) {
+
             this.groups = groups;
             this.children = children;
             inf = LayoutInflater.from(getActivity());
@@ -204,8 +208,8 @@ public class MonsterDetailsFragment extends Fragment {
             if (convertView == null) {
                 convertView = inf.inflate(R.layout.list_item, parent, false);
                 holder = new ViewHolder();
-                holder.text = (TextView) convertView.findViewById(R.id.lblListItem);
-                holder.image=(ImageView) convertView.findViewById(R.id.img);
+                holder.text = convertView.findViewById(R.id.lblListItem);
+                holder.image = convertView.findViewById(R.id.img);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -242,7 +246,7 @@ public class MonsterDetailsFragment extends Fragment {
             if (convertView == null) {
                 convertView = inf.inflate(R.layout.list_group, parent, false);
                 holder = new ViewHolder();
-                holder.text = (TextView) convertView.findViewById(R.id.lblListHeader);
+                holder.text = convertView.findViewById(R.id.lblListHeader);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();

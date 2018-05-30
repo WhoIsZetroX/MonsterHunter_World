@@ -19,12 +19,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.proyectodani2.R;
 import com.example.proyectodani2.monster_list.MonsterViewModel;
-import com.example.proyectodani2.start_menu.MainActivity;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,21 +33,17 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-
 public class MonsterPicsFragment extends Fragment {
     public static final int PICK_IMAGE = 1;
     public String theMonsterKey;
     Uri filePath;
-    //XML
-    ImageView imageMonster;
-    LinearLayout linearLayout;
-    RecyclerView recyclerView;
+    public ProgressBar pbar;
     MonsterPicsAdapter monsterPicsAdapter;
     FloatingActionButton fab;
     ImageView imageView;
     ProgressDialog pd;
-
+    //XML;
+    RecyclerView recyclerView;
     //Conectar a la base de datos
     private DatabaseReference mReference = null;
 
@@ -71,6 +66,8 @@ public class MonsterPicsFragment extends Fragment {
                 chooseImage();
             }
         });
+
+        pbar = view.findViewById(R.id.progress_bar);
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -102,6 +99,7 @@ public class MonsterPicsFragment extends Fragment {
         recyclerView.setAdapter(monsterPicsAdapter);
 
         monsterPicsAdapter.startListening();
+        pbar.setVisibility(View.INVISIBLE);
     }
 
     //Metodo para mostrar los datos del monstruo seleccionado

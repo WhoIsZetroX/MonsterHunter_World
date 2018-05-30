@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.example.proyectodani2.R;
@@ -20,7 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class MonsterPicsAdapter extends FirebaseRecyclerAdapter<String, MonsterImagesViewHolder> {
 
     Context context;
-
+    public ProgressBar pbar;
     public MonsterPicsAdapter(Context context, @NonNull FirebaseRecyclerOptions<String> options) {
         super(options);
         this.context = context;
@@ -40,6 +41,8 @@ public class MonsterPicsAdapter extends FirebaseRecyclerAdapter<String, MonsterI
                 context.startActivity(intent);
             }
         });
+
+
     }
 
     @Override

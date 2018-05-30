@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +31,7 @@ public class WeaponDetailFragment extends Fragment {
     //XML
     TextView weaponName, weaponDesc;
     ImageView weaponImage, weaponFlow;
+    public ProgressBar pbar;
     //Conectar a la base de datos
     private DatabaseReference mDatabase = null;
 
@@ -43,6 +45,8 @@ public class WeaponDetailFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weapon_detail, container, false);
+
+        pbar = view.findViewById(R.id.progress_bar);
 
         weaponName = view.findViewById(R.id.weaponName);
         weaponDesc = view.findViewById(R.id.weaponDesc);
@@ -76,6 +80,7 @@ public class WeaponDetailFragment extends Fragment {
                         // Get user value
                         final Weapon weapon = dataSnapshot.getValue(Weapon.class);
 
+                        pbar.setVisibility(View.INVISIBLE);
                         weaponName.setText(weapon.name);
                         weaponDesc.setText(weapon.desc);
                         Glide.with(WeaponDetailFragment.this).load(weapon.mDetailPic).into(weaponImage);

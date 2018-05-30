@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.proyectodani2.R;
@@ -32,8 +33,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import static com.example.proyectodani2.monster_info.MonsterPicsFragment.PICK_IMAGE;
-
 public class WeaponPicsFragment extends Fragment {
     RecyclerView recyclerView;
     WeaponPicsAdapter weaponPicsAdapter;
@@ -43,6 +42,7 @@ public class WeaponPicsFragment extends Fragment {
     public static final int PICK_IMAGE = 1;
     public String theWeaponKey;
     Uri filePath;
+    public ProgressBar pbar;
 
     //Conectar a la base de datos
     private DatabaseReference mReference = null;
@@ -60,6 +60,8 @@ public class WeaponPicsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        pbar = view.findViewById(R.id.progress_bar);
 
         pd = new ProgressDialog(getContext());
         pd.setMessage("Uploading....");
@@ -85,7 +87,7 @@ public class WeaponPicsFragment extends Fragment {
 
     void loadWeaponPics(final String weaponKey) {
         mReference = FirebaseDatabase.getInstance().getReference();
-
+        pbar.setVisibility(View.INVISIBLE);
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<String>()
                 .setQuery(mReference.child("weapons/data").child(weaponKey).child("weaponPics"), String.class)
                 .setLifecycleOwner(this)
