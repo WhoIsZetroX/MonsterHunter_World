@@ -18,7 +18,7 @@ public class Monster {
     public String weakness;
     public String detLoc;
     public String combatInfo;
-    public String weaknessInfo;
+//    public String weaknessInfo;
     //int imageUrl;
 
 
@@ -44,13 +44,13 @@ public class Monster {
         this.combatInfo = combatInfo;
     }
 
-    public String getWeaknessInfo() {
+    /*public String getWeaknessInfo() {
     return weaknessInfo;
     }
 
     public void setWeaknessInfo(String weaknessInfo) {
         this.weaknessInfo = weaknessInfo;
-    }
+    }*/
 
     public String getDetLoc() {
         return detLoc;
@@ -92,7 +92,6 @@ public class Monster {
     public void setPicUrl(String picUrl) {this.picUrl = picUrl;    }
 
     public String getmDetailPic() {
-
         return mDetailPic;
     }
 

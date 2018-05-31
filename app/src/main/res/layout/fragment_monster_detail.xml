@@ -19,7 +19,6 @@
                 android:id="@+id/monsterImage"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_weight="50"
                 android:scaleType="centerCrop"
                 android:tooltipText="Loading..." />
 
@@ -27,7 +26,6 @@
                 android:id="@+id/monsterName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
                 android:text="Loading..."
                 android:textAlignment="center"
                 android:textSize="30sp"
@@ -39,14 +37,12 @@
                 android:id="@+id/monsterDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
                 android:text="Loading..." />
 
             <ExpandableListView
                 android:id="@+id/expListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.14">
+                android:layout_height="wrap_content">
 
             </ExpandableListView>
 

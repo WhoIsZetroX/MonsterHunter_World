@@ -37,7 +37,6 @@ public class MonsterPicsFragment extends Fragment {
     public static final int PICK_IMAGE = 1;
     public String theMonsterKey;
     Uri filePath;
-    public ProgressBar pbar;
     MonsterPicsAdapter monsterPicsAdapter;
     FloatingActionButton fab;
     ImageView imageView;
@@ -66,8 +65,6 @@ public class MonsterPicsFragment extends Fragment {
                 chooseImage();
             }
         });
-
-        pbar = view.findViewById(R.id.progress_bar);
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -99,7 +96,6 @@ public class MonsterPicsFragment extends Fragment {
         recyclerView.setAdapter(monsterPicsAdapter);
 
         monsterPicsAdapter.startListening();
-        pbar.setVisibility(View.INVISIBLE);
     }
 
     //Metodo para mostrar los datos del monstruo seleccionado
